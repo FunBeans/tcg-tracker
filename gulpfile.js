@@ -9,6 +9,7 @@ const notify = require('gulp-notify');
 const sass = require('gulp-sass');
 const plumber = require('gulp-plumber');
 const concat = require('gulp-concat');
+// const transformClassProperties = require("babel-plugin-transform-class-properties");
 
 gulp.task('styles', () => {
 	return gulp.src('./dev/styles/**/*.scss')
@@ -18,7 +19,7 @@ gulp.task('styles', () => {
 });
 
 gulp.task('js', () => {
-	return browserify('dev/scripts/app.js', {debug: true})
+	return browserify('dev/scripts/index.js', {debug: true})
 		.transform('babelify', {
 			sourceMaps: true,
 			presets: ['env','react']
@@ -28,8 +29,9 @@ gulp.task('js', () => {
 			message: "Error: <%= error.message %>",
 			title: 'Error in JS 💀'
 		}))
-		.pipe(source('app.js'))
+		.pipe(source('index.js'))
 		.pipe(buffer())
+		// .pipe(transformClassProperties())
 		.pipe(gulp.dest('public/scripts'))
 		.pipe(reload({stream:true}));
 });
