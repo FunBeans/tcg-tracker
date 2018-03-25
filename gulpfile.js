@@ -31,7 +31,9 @@ gulp.task('js', () => {
 		}))
 		.pipe(source('index.js'))
 		.pipe(buffer())
-		// .pipe(transformClassProperties())
+		// .pipe(babel({
+		// 	plugins: ['babel-plugin-transform-class-properties']
+		// }))
 		.pipe(gulp.dest('public/scripts'))
 		.pipe(reload({stream:true}));
 });

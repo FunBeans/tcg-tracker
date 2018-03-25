@@ -1,2 +1,13 @@
 @import 'partials/normalise';
 @import 'partials/typography';
+
+.CardGrid {
+    width: 100vw;
+    border: 1px solid black;
+    padding: 50px 20px;
+}
+
+.SingleCard {
+    border: 1px solid pink;
+    width: 200px;
+}
