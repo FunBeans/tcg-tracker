@@ -1,5 +1,5 @@
-# Getting Started
+# TCG Card Tracker
+## By Natasha Teng and Linda Zhao
 
-1. `git clone` this repo
-2. `npm install`
-3. enjoy!
+1. Pokemon Card API
+2. Ebay Finding API
