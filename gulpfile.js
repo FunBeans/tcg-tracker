@@ -29,11 +29,11 @@ gulp.task('js', () => {
 			message: "Error: <%= error.message %>",
 			title: 'Error in JS 💀'
 		}))
-		.pipe(source('index.js'))
-		.pipe(buffer())
 		// .pipe(babel({
 		// 	plugins: ['babel-plugin-transform-class-properties']
 		// }))
+		.pipe(source('index.js'))
+		.pipe(buffer())
 		.pipe(gulp.dest('public/scripts'))
 		.pipe(reload({stream:true}));
 });

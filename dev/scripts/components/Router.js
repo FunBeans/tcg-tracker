@@ -1,17 +1,32 @@
 import React from "react";
-import { BrowserRouter, Route, Link, Redirect, Switch } from 'react-router-dom';
-import App from "./App";
-import CardGrid from "./CardGrid";
+import { BrowserRouter, Route, Link, Redirect, Switch, HashRouter } from 'react-router-dom';
+import FranchisePage from "./FranchisePage";
+import SplashPage from "./SplashPage";
+import CardGridPage from "./CardGridPage";
+import CardDetailPage from "./CardDetailPage";
 
 
-const Router = props => {
+class Router extends React.Component {
+    constructor() {
+        super();
+        this.state = {
+            userLoggedIn: false,
+            userObject: {},
+        }
+    }
+
+    render() {
         return (
-            <BrowserRouter>
-                <Switch>
-                    <Route exact path="/" component={CardGrid} />
-                </Switch>
-            </BrowserRouter>
+            <HashRouter>
+                <div>
+                    <Route exact path="/" component={SplashPage} />
+                    <Route exact path="/franchises" component={FranchisePage} />
+                    <Route exact path="/franchises/pokemon" component={CardGridPage} />
+                    <Route exact path="/franchises/pokemon/:cardId" component={CardDetailPage} />
+                </div>
+            </HashRouter>
         )
+    }
 };
 
 export default Router;
