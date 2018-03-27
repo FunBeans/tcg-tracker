@@ -8,7 +8,7 @@ import SingleCard from "./SingleCard";
 // eventually: choose which set will be called, and add infinite scroll
 // eventually: add ability to filter and sort as child component?
 
-class CardGrid extends React.Component {
+class CardGridPage extends React.Component {
     constructor() {
         super();
         this.state = {
@@ -55,13 +55,12 @@ class CardGrid extends React.Component {
 
     render() {
         return (
-            <div className="CardGrid">
-                {/* if there are cards in state, render them. If there are no cards in there, say there are no cards */}
-                {this.state.allCardsInSet ? this.renderSingleCards() : <p>there are no cards in state</p>}
-                
+            <div>
+                <h1>This is the card grid page</h1>
+                <SingleCard />
             </div>
         )
     }
 }
 
-export default CardGrid;
+export default CardGridPage;
