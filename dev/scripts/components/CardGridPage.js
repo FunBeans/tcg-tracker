@@ -13,7 +13,9 @@ class CardGridPage extends React.Component {
         super();
         this.state = {
             allCardsInSet: null,
+            cardName: [],
             page: null,
+            loadedCards: false,
         }
 
         this.loadCards = this.loadCards.bind(this);
@@ -39,25 +41,51 @@ class CardGridPage extends React.Component {
         // make axio calls to retrive all cards in set
         // want to retrieve first 20 cards??
         axios.get(url, params, headers).then((res) => {
+            // for (let i = 0; i < res.data.cards.length; i++){
+            //     const cardNames = res.data.cards[i].name;
+            //     console.log(cardNames);
+            // }
+            // console.table(res.data.cards);
+            // console.log(res.data.cards[i].name);
+            // const defaultBasic = res.data.cards.
             this.setState({
-                allCardsInSet: res.data.cards
+                allCardsInSet: res.data.cards,
+                loadedCards: true,
             }) 
         });
     }
 
     renderSingleCards() {
-        console.log(this.state.allCardsInSet);
-        this.state.allCardsInSet.map((card) => {
-            console.log(card.name);
-            return <SingleCard />
-        })
+        // Create a state for loaded cards : true
+        // Create a turnary, once it's true we populate it in the render
+        // console.log(this.state.allCardsInSet);
+        // this.state.allCardsInSet.map((card) => {
+        //     // console.log(card);
+        //     return <SingleCard />
+        // })
     }
 
     render() {
+        // JavaScript Lives here!!
+        // console.log(this.state.allCardsInSet);
+        // make the dataset (current state) into a variable 
+        const cardSet = this.state.allCardsInSet;
+        console.log(cardSet);
         return (
             <div>
                 <h1>This is the card grid page</h1>
-                <SingleCard />
+                {
+                    // this.state.loadedCards ? console.log('cards are loaded') : console.log('nothing there')
+                    this.state.loadedCards ? 
+                    cardSet.map(card => {
+                       return <SingleCard data={card} key={card.id} />
+                        // console.log(card);
+                    })
+                    // <SingleCard props={this.state.loadedCards}/> 
+                    : 
+                    <p>No Results</p>
+                }
+                
             </div>
         )
     }
