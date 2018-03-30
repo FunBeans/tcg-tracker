@@ -2,12 +2,22 @@
 @import 'partials/typography';
 
 .CardGrid {
-    width: 100vw;
+    // width: 100vw;
+    max-width: 100%;
     border: 1px solid black;
     padding: 50px 20px;
 }
 
+.displayCards{
+    max-width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
 .SingleCard {
     border: 1px solid pink;
-    width: 200px;
+    width: 300px;
 }
