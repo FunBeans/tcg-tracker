@@ -1,4 +1,5 @@
 import React from 'react';
+import { BrowserRouter, Route, Link, Redirect, Switch } from 'react-router-dom';
 import credentials from '../credentials';
 import axios from 'axios';
 import SingleCard from "./SingleCard";
@@ -13,11 +14,14 @@ class CardGridPage extends React.Component {
         super();
         this.state = {
             allCardsInSet: null,
+            // cardName: [],
             page: null,
+            loadedCards: false,
         }
 
         this.loadCards = this.loadCards.bind(this);
-        this.renderSingleCards = this.renderSingleCards.bind(this);
+        this.filterCard = this.filterCard.bind(this);
+        // this.renderSingleCards = this.renderSingleCards.bind(this);
     }
 
     componentDidMount() {
@@ -39,25 +43,81 @@ class CardGridPage extends React.Component {
         // make axio calls to retrive all cards in set
         // want to retrieve first 20 cards??
         axios.get(url, params, headers).then((res) => {
+            // for (let i = 0; i < res.data.cards.length; i++){
+            //     const cardNames = res.data.cards[i].name;
+            //     console.log(cardNames);
+            // }
+            // console.table(res.data.cards);
+            // console.log(res.data.cards[i].name);
+            // const defaultBasic = res.data.cards.
             this.setState({
-                allCardsInSet: res.data.cards
+                allCardsInSet: res.data.cards,
+                loadedCards: true,
             }) 
         });
     }
 
     renderSingleCards() {
-        console.log(this.state.allCardsInSet);
-        this.state.allCardsInSet.map((card) => {
-            console.log(card.name);
-            return <SingleCard />
-        })
+        // Create a state for loaded cards : true
+        // Create a turnary, once it's true we populate it in the render
+        // console.log(this.state.allCardsInSet);
+        // this.state.allCardsInSet.map((card) => {
+        //     // console.log(card);
+        //     return <SingleCard />
+        // })
+    }
+
+    filterCard(){
+        console.log("applied filters");
+        // create filters based off of user inputs
+        // this.state.filters ? print the set === user input : print base set 
     }
 
     render() {
+        // JavaScript Lives here!!
+        // console.log(this.state.allCardsInSet);
+        // make the dataset (current state) into a variable 
+        const cardSet = this.state.allCardsInSet;
+        console.log(cardSet);
         return (
-            <div>
+            <div className="CardGrid">
                 <h1>This is the card grid page</h1>
-                <SingleCard />
+               <form> 
+                   <h2>Filter By</h2>
+                    <div className="selectSet">
+                        <label htmlFor="set">Set</label>
+                        <input type=""/>
+                    </div>
+                    <div className="selectType">
+                        <h3>Type</h3>
+                        <label htmlFor="electric">Electirc</label>
+                        <input type="checkbox" value="electric"/>
+                        <input type="checkbox" value="ground"/>
+                        <input type="checkbox" value="grass"/>
+                        <input type="checkbox" value="fire"/>
+                        <input type="checkbox" value="ghost"/>
+                    </div>
+                    <label htmlFor="set">Set</label>
+                    <input type="" />
+                </form>
+                <div className="displayCards">
+                    {
+                        // this.state.loadedCards ? console.log('cards are loaded') : console.log('nothing there')
+                        this.state.loadedCards ? 
+                        cardSet.map(card => {
+                            console.log(card.id); 
+                            return (
+                                <Link to={`/franchises/pokemon/${card.id}`}>
+                                    <SingleCard data={card} key={card.id} />
+                                </Link>
+                            )
+                            // console.log(card);
+                        })
+                        : 
+                        null 
+                    }
+                    
+                </div>
             </div>
         )
     }
