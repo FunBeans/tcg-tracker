@@ -1,0 +1,24 @@
+@mixin pageHeading($fontweight) {
+  font-family: $primaryFont;
+  font-weight: 400;
+  letter-spacing: 1.2;
+}
+
+@mixin bodyText($fontweight) {
+  font-family: $primaryFont;
+  font-weight: 200;
+  letter-spacing: 1;
+}
+
+@mixin sectionHeading($fontweight) {
+  font-family: $primaryFont;
+  font-weight: 700;
+  letter-spacing: 1.5;
+}
+
+@mixin flex($direction, $alignment, $justification) {
+  display: flex;
+  flex-direction: $direction;
+  align-items: $alignment;
+  justify-content: $justification;
+}

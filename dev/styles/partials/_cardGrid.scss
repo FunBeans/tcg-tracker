@@ -1,0 +1,13 @@
+.CardGrid {
+    border: 1px solid black;
+    padding: 50px 20px;
+}
+
+.displayCards{
+    max-width: 100%;
+    @include flex (row, center, center);
+    flex-wrap: wrap;
+    // flex-direction: row;
+    // align-items: center;
+    // justify-content: center;
+}

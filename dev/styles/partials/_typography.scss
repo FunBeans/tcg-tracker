@@ -1,13 +1,11 @@
 html {
     font-size: 62.5%; /* makes font 10px */
-    font-family: 'Josefin Sans', sans-serif;
+    font-family: $primaryFont;
 }
 
 /* 2.4rems = base font size ✕ 2.4 */
 h1 {
     font-size: 4rem; /* equivalent of 24px */
-    font-family: $primaryFont;
-    font-style: italic;
     color: #D4C62E;
     text-shadow: 2px 2px 0px black;
 }
@@ -15,28 +13,20 @@ h1 {
 /* 2rems = base font size ✕ 2 */
 h2 {
     font-size: 2rem; /* equivalent of 20px */
-    font-family: $primaryFont;
-    font-style: italic;
 }
 
 h3 {
     font-size: 1.6rem; /* equivalent of 20px */
-    font-family: $secondaryFont;
-    font-style: italic;
     margin-bottom: 20px;
 }
 
 h4 {
     font-size: 2rem; /* equivalent of 20px */
-    font-family: $secondaryFont;
-    font-style: italic;
     margin-bottom: 20px;
 }
 
 h5 {
     font-size: 1.6rem; /* equivalent of 20px */
-    font-family: $secondaryFont;
-    font-style: italic;
 }
 
 /* 1.6rems = base font size ✕ 1.6 */
