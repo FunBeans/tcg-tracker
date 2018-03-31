@@ -5,7 +5,6 @@ import SplashPage from "./SplashPage";
 import CardGridPage from "./CardGridPage";
 import CardDetailPage from "./CardDetailPage";
 
-
 class Router extends React.Component {
     constructor() {
         super();
