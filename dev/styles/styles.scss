@@ -1,5 +1,9 @@
 @import 'partials/normalise';
 @import 'partials/typography';
+@import 'partials/mixins';
+@import 'partials/variables';
+@import 'buttonForm';
+
 
 .CardGrid {
     border: 1px solid black;
