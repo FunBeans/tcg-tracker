@@ -1,28 +1,16 @@
 @import 'partials/normalise';
-@import 'partials/typography';
-@import 'partials/mixins';
 @import 'partials/variables';
-@import 'buttonForm';
-
-
-.CardGrid {
-    border: 1px solid black;
-    padding: 50px 20px;
-}
-
-.displayCards{
-    max-width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-}
-
-.SingleCard {
-    border: 1px solid pink;
-    width: 300px;
-}
+@import 'partials/mixins';
+@import 'partials/typography';
+@import 'partials/splash';
+@import 'partials/login';
+@import 'partials/navBar';
+@import 'partials/franchise';
+@import 'partials/cardGrid';
+@import 'partials/singleCard';
+@import 'partials/cardDetail';
+@import 'partials/addDeck';
+@import 'partials/buttonForm';
 
 .wrapper {
     width: 95%;
