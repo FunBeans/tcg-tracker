@@ -2,8 +2,6 @@
 @import 'partials/typography';
 
 .CardGrid {
-    // width: 100vw;
-    max-width: 100%;
     border: 1px solid black;
     padding: 50px 20px;
 }
@@ -20,4 +18,10 @@
 .SingleCard {
     border: 1px solid pink;
     width: 300px;
+}
+
+.wrapper {
+    width: 95%;
+    max-width: 1250px;
+    margin: 0 auto;
 }

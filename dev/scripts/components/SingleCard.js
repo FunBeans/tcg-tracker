@@ -1,8 +1,8 @@
 import React from "react";
 
 const SingleCard = (props) => {
-    console.log(props)
-    console.log(props.data.imageUrl);
+    // console.log(props)
+    // console.log(props.data.imageUrl);
     return (
         <div className="SingleCard">
             <p>this is a single card</p>

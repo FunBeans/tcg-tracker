@@ -17,10 +17,12 @@ class CardGridPage extends React.Component {
             // cardName: [],
             page: null,
             loadedCards: false,
+            filteredCards: null,
         }
 
         this.loadCards = this.loadCards.bind(this);
         this.filterCard = this.filterCard.bind(this);
+
         // this.renderSingleCards = this.renderSingleCards.bind(this);
     }
 
@@ -57,68 +59,97 @@ class CardGridPage extends React.Component {
         });
     }
 
-    renderSingleCards() {
-        // Create a state for loaded cards : true
-        // Create a turnary, once it's true we populate it in the render
-        // console.log(this.state.allCardsInSet);
-        // this.state.allCardsInSet.map((card) => {
-        //     // console.log(card);
-        //     return <SingleCard />
-        // })
-    }
+    filterCard(e){
+        // filterType is the value of checkbox that's selected
+        const filterType = e.target.value;
+        // console.log(filterType)
+        // if this is the first checkbox selected, filter from allCardsInSet. if there are multiple checkboxes selected then filter the filteredCards. 
+        let filterArr;
+        if(this.state.filteredCards === null) {
+            filterArr = this.state.allCardsInSet;
+        } else {
+            filterArr = this.state.filteredCards;
+        }
+        // create new array containing the specific cards that has the selected type
+        const filteredCards = filterArr.filter(card => {
+            // if the card is missing "types" data then skip it
+            // console.log(card)
+            if(card.types) {
+                console.log(card.types[0].toLowerCase());
+                console.log(filterType);
+                console.log(card.types[0].toLowerCase() === filterType);
+                // card.types.includes(filterType);
+                card.types[0].toLowerCase() === filterType;
+            }
+        });
 
-    filterCard(){
-        console.log("applied filters");
-        // create filters based off of user inputs
-        // this.state.filters ? print the set === user input : print base set 
+        // set filtered cards into state.
+        console.log(filteredCards);
+        this.setState({ filteredCards });
     }
 
     render() {
         // JavaScript Lives here!!
         // console.log(this.state.allCardsInSet);
         // make the dataset (current state) into a variable 
-        const cardSet = this.state.allCardsInSet;
-        console.log(cardSet);
+        // if cards are filtered, display the filteredCards. if no filters, display full list
+        let cardSet;
+        { this.state.filteredCards !== null ?
+            cardSet = this.state.filteredCards
+            :
+            cardSet = this.state.allCardsInSet
+        }
+        // console.log(cardSet);
         return (
-            <div className="CardGrid">
-                <h1>This is the card grid page</h1>
-               <form> 
-                   <h2>Filter By</h2>
-                    <div className="selectSet">
-                        <label htmlFor="set">Set</label>
-                        <input type=""/>
+            <main className="CardGrid">
+                <div className="wrapper">
+                    <h1>This is the card grid page</h1>
+                   <form> 
+                       <h2>Filter By</h2>
+                        <div className="selectSet">
+                            <label htmlFor="set">Set</label>
+                            <input type=""/>
+                        </div>
+                        <div className="selectType">
+                            <h3>Type</h3>
+                            <label htmlFor="electric">Electric</label>
+                            <input onChange={(e) => this.filterCard(e)} type="checkbox" value="electric"/>
+
+                            <label htmlFor="ground">Ground</label>
+                            <input onChange={(e) => this.filterCard(e)} type="checkbox" value="ground"/>
+
+                            <label htmlFor="grass">Grass</label>
+                            <input onChange={(e) => this.filterCard(e)} type="checkbox" value="grass"/>
+
+                            <label htmlFor="fire">Fire</label>
+                            <input onChange={(e) => this.filterCard(e)} type="checkbox" value="fire"/>
+
+                            <label htmlFor="ghost">Ghost</label>
+                            <input onChange={(e) => this.filterCard(e)} type="checkbox" value="ghost"/>
+                        </div>
+                        {/* <label htmlFor="set">Set</label>
+                        <input type="" /> */}
+                    </form>
+                    <div className="displayCards">
+                        {
+                            // this.state.loadedCards ? console.log('cards are loaded') : console.log('nothing there')
+                            this.state.loadedCards ? 
+                            cardSet.map(card => {
+                                {/* console.log(card.id);  */}
+                                return (
+                                    <Link key={card.id} to={`/franchises/pokemon/${card.id}`}>
+                                        <SingleCard data={card} key={card.id} />
+                                    </Link>
+                                )
+                                // console.log(card);
+                            })
+                            : 
+                            null 
+                        }
+                        
                     </div>
-                    <div className="selectType">
-                        <h3>Type</h3>
-                        <label htmlFor="electric">Electirc</label>
-                        <input type="checkbox" value="electric"/>
-                        <input type="checkbox" value="ground"/>
-                        <input type="checkbox" value="grass"/>
-                        <input type="checkbox" value="fire"/>
-                        <input type="checkbox" value="ghost"/>
-                    </div>
-                    <label htmlFor="set">Set</label>
-                    <input type="" />
-                </form>
-                <div className="displayCards">
-                    {
-                        // this.state.loadedCards ? console.log('cards are loaded') : console.log('nothing there')
-                        this.state.loadedCards ? 
-                        cardSet.map(card => {
-                            console.log(card.id); 
-                            return (
-                                <Link to={`/franchises/pokemon/${card.id}`}>
-                                    <SingleCard data={card} key={card.id} />
-                                </Link>
-                            )
-                            // console.log(card);
-                        })
-                        : 
-                        null 
-                    }
-                    
                 </div>
-            </div>
+            </main>
         )
     }
 }
