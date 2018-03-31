@@ -75,17 +75,21 @@ class CardGridPage extends React.Component {
             // if the card is missing "types" data then skip it
             // console.log(card)
             if(card.types) {
-                console.log(card.types[0].toLowerCase());
-                console.log(filterType);
-                console.log(card.types[0].toLowerCase() === filterType);
-                // card.types.includes(filterType);
-                card.types[0].toLowerCase() === filterType;
+                // console.log(card.types[0].toLowerCase());
+                // console.log(filterType);
+                // console.log(card.types[0].toLowerCase() === filterType);
+                card.types.includes(filterType);
+                return card.types[0].toLowerCase() === filterType;
             }
         });
 
         // set filtered cards into state.
         console.log(filteredCards);
         this.setState({ filteredCards });
+    }
+
+    clearFilter(){
+        console.log("cleared");
     }
 
     render() {
@@ -112,8 +116,8 @@ class CardGridPage extends React.Component {
                         </div>
                         <div className="selectType">
                             <h3>Type</h3>
-                            <label htmlFor="electric">Electric</label>
-                            <input onChange={(e) => this.filterCard(e)} type="checkbox" value="electric"/>
+                            <label htmlFor="lightning">Lightning</label>
+                            <input onChange={(e) => this.filterCard(e)} type="checkbox" value="lightning"/>
 
                             <label htmlFor="ground">Ground</label>
                             <input onChange={(e) => this.filterCard(e)} type="checkbox" value="ground"/>
