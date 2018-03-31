@@ -44,11 +44,10 @@ class CardGridPage extends React.Component {
                 pageSize: "100"
             }
         }).then((res) => {
-            const allCards = res.data.cards;
-
+            const allCards = this.state.allCardsInSet.concat(res.data.cards);
 
             // console.log(this.state.allCardsInSet);
-            // console.log(res.data);
+            // console.log(res.data.cards);
             // console.log(allCards);
             this.setState({
                 allCardsInSet: allCards,
@@ -101,11 +100,11 @@ class CardGridPage extends React.Component {
         // make the dataset (current state) into a variable 
         // if cards are filtered, display the filteredCards. if no filters, display full list
         let cardSet = this.state.allCardsInSet;
-        // { this.state.filteredCards !== nu ?
-        //     cardSet = this.state.filteredCards
-        //     :
-        //     cardSet = this.state.allCardsInSet
-        // }
+        { this.state.filteredCards !== [] ?
+            cardSet = this.state.filteredCards
+            :
+            cardSet = this.state.allCardsInSet
+        }
 
 
         // console.log(cardSet);
