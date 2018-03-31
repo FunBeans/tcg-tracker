@@ -13,50 +13,52 @@ class CardGridPage extends React.Component {
     constructor() {
         super();
         this.state = {
-            allCardsInSet: null,
+            allCardsInSet: [],
             // cardName: [],
             page: null,
             loadedCards: false,
-            filteredCards: null,
+            filteredCards: [],
         }
 
         this.loadCards = this.loadCards.bind(this);
         this.filterCard = this.filterCard.bind(this);
+        this.clearFilters = this.clearFilters.bind(this);
+        this.loadMoreCards = this.loadMoreCards.bind(this);
 
         // this.renderSingleCards = this.renderSingleCards.bind(this);
     }
 
     componentDidMount() {
-        this.loadCards();
+        this.loadCards(1);
     }
 
-    loadCards() {
+    loadCards(page) {
         // create the parameters and headers for axios call
-        const url = `${credentials.pokemonApiUrl}/cards`;
-        const params = {
-            setName: `"Base"`,
-        }
-        // still trying to make this work
-        // https://docs.pokemontcg.io/
-        const headers = {
-            count: 30,
-        }
 
         // make axio calls to retrive all cards in set
         // want to retrieve first 20 cards??
-        axios.get(url, params, headers).then((res) => {
-            // for (let i = 0; i < res.data.cards.length; i++){
-            //     const cardNames = res.data.cards[i].name;
-            //     console.log(cardNames);
-            // }
-            // console.table(res.data.cards);
-            // console.log(res.data.cards[i].name);
-            // const defaultBasic = res.data.cards.
+        axios.get(`${credentials.pokemonApiUrl}/cards`,  {
+            params: {
+                series: 'XY',
+                page: page,
+                pageSize: "100"
+            }
+        }).then((res) => {
+            const allCards = res.data.cards;
+
+
+            // console.log(this.state.allCardsInSet);
+            // console.log(res.data);
+            // console.log(allCards);
             this.setState({
-                allCardsInSet: res.data.cards,
+                allCardsInSet: allCards,
                 loadedCards: true,
             }) 
         });
+    }
+
+    loadMoreCards() {
+        this.loadCards(2);
     }
 
     filterCard(e){
@@ -75,9 +77,9 @@ class CardGridPage extends React.Component {
             // if the card is missing "types" data then skip it
             // console.log(card)
             if(card.types) {
-                // console.log(card.types[0].toLowerCase());
-                // console.log(filterType);
-                // console.log(card.types[0].toLowerCase() === filterType);
+                console.log(card.types[0].toLowerCase());
+                console.log(filterType);
+                console.log(card.types[0].toLowerCase() === filterType);
                 card.types.includes(filterType);
                 return card.types[0].toLowerCase() === filterType;
             }
@@ -88,8 +90,9 @@ class CardGridPage extends React.Component {
         this.setState({ filteredCards });
     }
 
-    clearFilter(){
-        console.log("cleared");
+    clearFilters(e) {
+        e.preventDefault();
+        this.setState({ filteredCards : null })
     }
 
     render() {
@@ -97,12 +100,14 @@ class CardGridPage extends React.Component {
         // console.log(this.state.allCardsInSet);
         // make the dataset (current state) into a variable 
         // if cards are filtered, display the filteredCards. if no filters, display full list
-        let cardSet;
-        { this.state.filteredCards !== null ?
-            cardSet = this.state.filteredCards
-            :
-            cardSet = this.state.allCardsInSet
-        }
+        let cardSet = this.state.allCardsInSet;
+        // { this.state.filteredCards !== nu ?
+        //     cardSet = this.state.filteredCards
+        //     :
+        //     cardSet = this.state.allCardsInSet
+        // }
+
+
         // console.log(cardSet);
         return (
             <main className="CardGrid">
@@ -116,7 +121,7 @@ class CardGridPage extends React.Component {
                         </div>
                         <div className="selectType">
                             <h3>Type</h3>
-                            <label htmlFor="lightning">Lightning</label>
+                            <label htmlFor="lightning">Electric</label>
                             <input onChange={(e) => this.filterCard(e)} type="checkbox" value="lightning"/>
 
                             <label htmlFor="ground">Ground</label>
@@ -130,6 +135,8 @@ class CardGridPage extends React.Component {
 
                             <label htmlFor="ghost">Ghost</label>
                             <input onChange={(e) => this.filterCard(e)} type="checkbox" value="ghost"/>
+
+                            <button onClick={(e) => this.clearFilters(e)}>Clear Filters</button>
                         </div>
                         {/* <label htmlFor="set">Set</label>
                         <input type="" /> */}
@@ -152,6 +159,8 @@ class CardGridPage extends React.Component {
                         }
                         
                     </div>
+
+                    <button onClick={this.loadMoreCards}>Next Page</button>
                 </div>
             </main>
         )
