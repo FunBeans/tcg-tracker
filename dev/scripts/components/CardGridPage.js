@@ -39,7 +39,7 @@ class CardGridPage extends React.Component {
         // want to retrieve first 20 cards??
         axios.get(`${credentials.pokemonApiUrl}/cards`,  {
             params: {
-                series: 'XY',
+                setCode: 'sm4',
                 page: page,
                 pageSize: "100"
             }
@@ -66,10 +66,10 @@ class CardGridPage extends React.Component {
         // console.log(filterType)
         // if this is the first checkbox selected, filter from allCardsInSet. if there are multiple checkboxes selected then filter the filteredCards. 
         let filterArr;
-        if(this.state.filteredCards === null) {
-            filterArr = this.state.allCardsInSet;
-        } else {
+        if(this.state.filteredCards === []) {
             filterArr = this.state.filteredCards;
+        } else {
+            filterArr = this.state.allCardsInSet;
         }
         // create new array containing the specific cards that has the selected type
         const filteredCards = filterArr.filter(card => {
@@ -91,7 +91,7 @@ class CardGridPage extends React.Component {
 
     clearFilters(e) {
         e.preventDefault();
-        this.setState({ filteredCards : null })
+        this.setState({ filteredCards : [] })
     }
 
     render() {
@@ -99,15 +99,16 @@ class CardGridPage extends React.Component {
         // console.log(this.state.allCardsInSet);
         // make the dataset (current state) into a variable 
         // if cards are filtered, display the filteredCards. if no filters, display full list
-        let cardSet = this.state.allCardsInSet;
-        // { this.state.filteredCards !== nu ?
-        //     cardSet = this.state.filteredCards
-        //     :
-        //     cardSet = this.state.allCardsInSet
-        // }
+        let cardSet;
+        console.log(this.state.filteredCards !== []);
+        { this.state.filteredCards[0] ?
+            cardSet = this.state.filteredCards
+            :
+            cardSet = this.state.allCardsInSet
+        }
 
 
-        // console.log(cardSet);
+        console.log(cardSet);
         return (
             <main className="CardGrid">
                 <div className="wrapper">
@@ -145,7 +146,7 @@ class CardGridPage extends React.Component {
                             // this.state.loadedCards ? console.log('cards are loaded') : console.log('nothing there')
                             this.state.loadedCards ? 
                             cardSet.map(card => {
-                                {/* console.log(card.id);  */}
+                                console.log(cardSet); 
                                 return (
                                     <Link key={card.id} to={`/franchises/pokemon/${card.id}`}>
                                         <SingleCard data={card} key={card.id} />
