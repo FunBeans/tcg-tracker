@@ -44,14 +44,13 @@ class CardGridPage extends React.Component {
                 pageSize: "100"
             }
         }).then((res) => {
-            const allCards = res.data.cards;
+            const allCards = this.state.allCardsInSet.concat(res.data.cards);
 
-
-            console.log(this.state.allCardsInSet);
-            console.log(res.data);
-            console.log(allCards);
+            // console.log(this.state.allCardsInSet);
+            // console.log(res.data.cards);
+            // console.log(allCards);
             this.setState({
-                // allCardsInSet: allCards,
+                allCardsInSet: allCards,
                 loadedCards: true,
             }) 
         });
