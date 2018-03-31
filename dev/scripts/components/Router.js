@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Route, Link, Redirect, Switch, HashRouter } from 'react-router-dom';
+import { BrowserRouter, Route, Link, Redirect, Switch, HashRouter, BrowserHistory } from 'react-router-dom';
 import FranchisePage from "./FranchisePage";
 import SplashPage from "./SplashPage";
 import CardGridPage from "./CardGridPage";
@@ -16,7 +16,7 @@ class Router extends React.Component {
 
     render() {
         return (
-            <HashRouter>
+            <HashRouter history={BrowserHistory}>
                 <div>
                     <Route exact path="/" component={SplashPage} />
                     <Route exact path="/franchises" component={FranchisePage} />
