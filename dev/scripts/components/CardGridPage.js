@@ -18,7 +18,7 @@ class CardGridPage extends React.Component {
             page: 1,
             loadedCards: false,
             filteredCards: [],
-            set: "xy1",
+            set: "",
             showFilteredCards: false,
         }
 
@@ -116,6 +116,7 @@ class CardGridPage extends React.Component {
             showFilteredCards : false,
             filteredCards: [],
             page: 1,
+            set: e.target.value
          });
         this.loadCards(this.state.page, e.target.value);
     }
@@ -142,8 +143,8 @@ class CardGridPage extends React.Component {
                        <h2>Filter By</h2>
                         <div className="selectSet">
                             <label htmlFor="set">Set</label>
-                            <select value={this.state.set} onChange={e => this.searchBySet(e)}>
-                                <option value="sm5" selected>Sun and Moon Ultra Prism</option>
+                            <select value={this.state.set} onChange={this.searchBySet}>
+                                <option value="sm5">Sun and Moon Ultra Prism</option>
                                 <option value="xy1">XY</option>
                                 <option value="sm1">Sun and Moon</option>
                                 <option value="bw1">Black and White</option>
