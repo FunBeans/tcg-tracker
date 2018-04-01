@@ -88,12 +88,9 @@ class CardDetailPage extends React.Component {
                            : null
                         }  
                      </div>
-
+                     
+                     {/* text if it is a trainer/item card */}
                      <p>{text}</p>
-
-                     <h3>
-                        {`rarity: "${rarity}"`}
-                     </h3>
 
                      {
                         attacks
@@ -115,6 +112,10 @@ class CardDetailPage extends React.Component {
                         })
                         : null
                      }
+
+                     <h3>
+                        {`rarity: "${rarity}"`}
+                     </h3>
 
                      <button onClick={this.addToDeck}>Add to Deck</button>
 
