@@ -7,6 +7,7 @@
 }
 .splashContentContainer{
     width: 600px;
+    @include flex(column, center, space-between);
     @media (max-width: 480px) {
         width: 300px;
     }
@@ -25,6 +26,12 @@
         text-transform: uppercase;
         text-align: center;
     }
+    .appTitle{
+        margin-bottom: 100px;
+    }
+    // .appEntry{
+    //     margin-top: 100px;
+    // }
 }
 .logo{
     // width: 50%;
