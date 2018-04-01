@@ -1,0 +1,20 @@
+.cardDetails {
+   @extend .flex;
+
+   h2 {
+      @extend .flex;
+      align-items: center;
+   }
+}
+
+.detailsContent {
+   width: 50%;
+   margin-left: 5%;
+}
+
+.cardDetails .detailsContainer {
+   @extend .flex;
+   justify-content: space-between;
+   max-width: 400px;
+   width: 50%;
+}
