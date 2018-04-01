@@ -10,6 +10,8 @@ class CardDetailPage extends React.Component {
         this.state = {
             cardId: '',
             cardInfo: {},
+            cardCollection: [],
+            user: {}
         }
 
         this.getCardInfo = this.getCardInfo.bind(this);
@@ -17,13 +19,32 @@ class CardDetailPage extends React.Component {
     }
 
     componentDidMount() {
-        console.log(this.props.match.params.cardId);
-        this.setState({ cardId : this.props.match.params.cardId },
-            () => {
-                // wait until state is set before making axios call
-                this.getCardInfo()
-            }
-        )
+      console.log(this.props.match.params.cardId);
+      //have user's firebase information logged in state
+      firebase.auth().onAuthStateChanged(user => {
+        this.setState({ user: user });
+      });
+      //connect to user's firebase
+      const dbref = firebase
+        .database()
+        .ref(`users/${this.state.user.uid}`);
+      dbref.on("value", snapshot => {
+         console.log(snapshot.val());
+      //    const data = snapshot.val();
+      //    const state = [];
+      //    for (let key in data) {
+      //    data[key].key = key;
+      //    state.push(data[key]);
+      //    }
+      //    console.log(state);
+      //    this.setState({ recipes: state });
+      });
+      this.setState({ cardId : this.props.match.params.cardId },
+         () => {
+               // wait until state is set before making axios call
+               this.getCardInfo()
+         }
+      )
     }
 
     getCardInfo() {
@@ -39,12 +60,26 @@ class CardDetailPage extends React.Component {
       const dbRefUser = firebase.database().ref(`users/${firebase.auth().currentUser.uid}`);
       console.log(dbRefUser);
       console.log(this.state.cardInfo)
-      // dbRefUser
-      // .push({
-      //    start: this.props.location.state.firstChoice,
-      //    end: this.props.location.state.endChoice,
-      //    startTime: this.state.startTime
-      // })
+      
+      dbRefUser
+      .push({
+         cardInfo: this.state.cardInfo
+      })
+      // const duplicateRecipe = this.state.recipes.find((item) => recipeData.url === item.url);
+      // if (duplicateRecipe === undefined) {
+      //    //then set state
+      //    recipeState.push(recipeData);
+      //    this.setState({
+      //       recipes: recipeState
+      //    })
+      //    //update firebase
+      //    const dbref = firebase.database().ref("/recipes");
+      //    dbref.push(recipeData);
+      // } else {
+      //    console.log("error")
+      // }
+
+      // if we want to put in a public database
       // .then((data) => {
       //    const dbRefPublic = firebase.database().ref(`/public/${data.ref.key}`);
       //    console.log(dbRefPublic);
@@ -54,6 +89,7 @@ class CardDetailPage extends React.Component {
       //       startTime: this.state.startTime
       //    });
       // });
+      console.log("card added")
     }
 
     render() {     
