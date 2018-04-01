@@ -6,8 +6,6 @@ html {
 /* 2.4rems = base font size ✕ 2.4 */
 h1 {
     font-size: 4rem; /* equivalent of 24px */
-    color: #D4C62E;
-    text-shadow: 2px 2px 0px black;
 }
 
 /* 2rems = base font size ✕ 2 */
@@ -36,13 +34,8 @@ p {
     line-height: 10px;
 }
 
-span {
-    color: #D4C62E;
-}
-
 a {
     text-decoration: none;
-    background: #D4C62E;
     color: white;
     padding: 10px 20px;
     border-radius: 5px;

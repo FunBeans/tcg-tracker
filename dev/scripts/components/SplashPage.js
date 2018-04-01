@@ -6,9 +6,16 @@ class SplashPage extends React.Component {
 
     render() {
         return (
-            <div>
-                <h1>This is the Splash</h1>
-                <Link to={`/franchises`}>Go to a franchise</Link>
+            <div className="splashPage">
+                <div className="logo">
+                    <h1><span>the</span>tcg</h1>
+                    <div className="logoContainer">
+                        <img src="../../../images/Card-blueWhite.png" alt="tcg logo"/>
+                    </div>
+                </div>
+                <h2>a trading card game collector</h2>
+                <h3>pick a franchise & start colelcting!</h3>
+                <Link to={`/franchises`}>enter</Link>
             </div>
         )
     }
