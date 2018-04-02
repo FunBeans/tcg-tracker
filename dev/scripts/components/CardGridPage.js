@@ -141,7 +141,6 @@ class CardGridPage extends React.Component {
                 <NavBar logInUser={this.logInUser} googleSignIn={this.googleSignIn} signOutUser={this.signOutUser} />
                 <main className="CardGrid">
                     <div className="wrapper">
-
                        <form className="filter"> 
                            <h2>Filter By</h2>
                             <div className="selectSets">

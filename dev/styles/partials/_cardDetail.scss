@@ -26,6 +26,7 @@
    margin-left: 5%;
    flex-grow: 1;
    // border: 1px solid blue;
+//    @include flex(row, center, space-between);
 }
 
 .cardDetails .detailsContainer {
@@ -35,12 +36,21 @@
    margin-bottom: 15px;
 }
 
-.cardDetails .typeHolder {
-   width: 20px;
+.cardInfo{
+    @include flex(row, center, flex-start);  
+    margin-bottom: 20px;
+    color: $text;
+    text-transform: uppercase;
 }
+.cardLabel{
+    margin-right: 20px;
+}
+// .cardDetails .typeHolder {
+//    width: 20px;
+// }
 
-.cardDetails button {
-   @extend .clear;
+.addButton{
+   @extend .button;
    width: 100%;
    font-size: 2rem;
    min-width: 200px;

@@ -99,6 +99,83 @@ class CardDetailPage extends React.Component {
    }
 
     render() {     
+<<<<<<< HEAD
+        const { ability, attacks, hp, name, types, weaknesses, imageUrl, rarity, supertype, text, set, nationalPokedexNumber } = this.state.cardInfo;
+        console.log(attacks)
+        return (
+            <React.Fragment>
+            <NavBar logInUser={this.logInUser} googleSignIn={this.googleSignIn} signOutUser={this.signOutUser} />
+               <div className="wrapper">
+                   <main className="cardDetails">
+    
+                      <aside className="detailsImg">
+                         <img src={imageUrl} alt={`a picture of ${name}`}/>
+                      </aside>
+    
+                      <section className="detailsContent">
+                         <div className="detailsContainer">
+                            <h2>
+                               {name}
+                               <span>
+                                  {supertype}
+                               </span>
+                            </h2>
+                            {
+                               supertype === "Pokémon" 
+                               ?  <h2>
+                                     HP{hp}
+                                     <img src={`../../../images/${types}.png`} alt={`an emblem of the type ${types}`} />
+                                  </h2>
+                               : null
+                            }  
+                         </div>
+    
+                         {
+                            supertype === "Pokémon"
+                            ? attacks.map((attack, i) => {
+    
+                               return   <React.Fragment>
+                                           <div className="detailsContainer" key={i}>
+                                              <h2>
+                                                 {attack.name}
+                                                 {
+                                                    attack.cost 
+                                                    ? attack.cost.map((cost,i) => {
+                                                       return <img key={i} src={`../../../images/${cost}.png`} alt={`an emblem of the type ${types}`}/>
+                                                    })
+                                                    :null
+                                                 }
+                                              </h2>
+                                           </div>
+                                           <div className="detailsContainer">
+                                              <p>{attack.text}</p>
+                                           </div>
+                                        </React.Fragment>
+                            })
+                            : null
+                         }
+    
+                         <div className="cardInfo">
+                            <div className="cardLabel">
+                                <h3>rarity</h3>
+                                <h3>set</h3>
+                                <h3>pokedex #</h3>
+                            </div>
+                            <div className="cardStuff">
+                                <h3>{rarity}</h3>
+                                <h3>{set}</h3>
+                                <h3>{nationalPokedexNumber}</h3>
+                            </div>
+                         </div>
+                         <button  className="addButton" onClick={this.addToDeck}>Add to Deck</button>
+    
+    
+                      </section>
+                   </main>
+               </div>
+            </React.Fragment>
+        )
+=======
         const { ability, attacks, hp, name, types, weaknesses, imageUrl, rarity, supertype, text, nationalPokedexNumber } = this.state.cardInfo;
         return <React.Fragment>
             <NavBar logInUser={this.logInUser} googleSignIn={this.googleSignIn} signOutUser={this.signOutUser} />
@@ -205,6 +282,7 @@ class CardDetailPage extends React.Component {
                </main>
             </div>
           </React.Fragment>;
+>>>>>>> 977089acbcb420dc512d31be381c3dbef8ab2207
     }
 };
 
