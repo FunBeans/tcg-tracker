@@ -21,6 +21,10 @@
    margin-bottom: 20px;
 }
 
+.typeHolder {
+   width: 30px;
+}
+
 .detailsContent {
    max-width: 70%;
    margin-left: 5%;
@@ -45,11 +49,8 @@
 .cardLabel{
     margin-right: 20px;
 }
-// .cardDetails .typeHolder {
-//    width: 20px;
-// }
 
-.addButton{
+.addButton {
    @extend .button;
    width: 100%;
    font-size: 2rem;
