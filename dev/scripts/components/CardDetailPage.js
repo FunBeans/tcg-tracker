@@ -104,65 +104,67 @@ class CardDetailPage extends React.Component {
         return (
             <React.Fragment>
             <NavBar logInUser={this.logInUser} googleSignIn={this.googleSignIn} signOutUser={this.signOutUser} />
-               <main className="cardDetails">
-
-                  <aside className="detailsImg">
-                     <img src={imageUrl} alt={`a picture of ${name}`}/>
-                  </aside>
-
-                  <section className="detailsContent">
-                  
-                     <div className="detailsContainer">
-                        <h2>
-                           {name}
-                           <span>
-                              {supertype}
-                           </span>
-                        </h2>
-                        {
-                           supertype === "Pokémon" 
-                           ?  <h2>
-                                 HP{hp}
-                                 <img src={`../../../images/${types}.png`} alt={`an emblem of the type ${types}`} />
-                              </h2>
-                           : null
-                        }  
-                     </div>
-
-                     {
-                        supertype === "Pokémon"
-                        ? attacks.map((attack, i) => {
-
-                           return   <React.Fragment>
-                                       <div className="detailsContainer" key={i}>
-                                          <h2>
-                                             {attack.name}
-                                             {
-                                                attack.cost 
-                                                ? attack.cost.map((cost,i) => {
-                                                   return <img key={i} src={`../../../images/${cost}.png`} alt={`an emblem of the type ${types}`}/>
-                                                })
-                                                :null
-                                             }
-                                          </h2>
-                                       </div>
-                                       <div className="detailsContainer">
-                                          <p>{attack.text}</p>
-                                       </div>
-                                    </React.Fragment>
-                        })
-                        : null
-                     }
-
-                     <h3>
-                        {`rarity: "${rarity}"`}
-                     </h3>
-
-                     <button onClick={this.addToDeck}>Add to Deck</button>
-
-
-                  </section>
-               </main>
+               <div className="wrapper">
+                   <main className="cardDetails">
+    
+                      <aside className="detailsImg">
+                         <img src={imageUrl} alt={`a picture of ${name}`}/>
+                      </aside>
+    
+                      <section className="detailsContent">
+                      
+                         <div className="detailsContainer">
+                            <h2>
+                               {name}
+                               <span>
+                                  {supertype}
+                               </span>
+                            </h2>
+                            {
+                               supertype === "Pokémon" 
+                               ?  <h2>
+                                     HP{hp}
+                                     <img src={`../../../images/${types}.png`} alt={`an emblem of the type ${types}`} />
+                                  </h2>
+                               : null
+                            }  
+                         </div>
+    
+                         {
+                            supertype === "Pokémon"
+                            ? attacks.map((attack, i) => {
+    
+                               return   <React.Fragment>
+                                           <div className="detailsContainer" key={i}>
+                                              <h2>
+                                                 {attack.name}
+                                                 {
+                                                    attack.cost 
+                                                    ? attack.cost.map((cost,i) => {
+                                                       return <img key={i} src={`../../../images/${cost}.png`} alt={`an emblem of the type ${types}`}/>
+                                                    })
+                                                    :null
+                                                 }
+                                              </h2>
+                                           </div>
+                                           <div className="detailsContainer">
+                                              <p>{attack.text}</p>
+                                           </div>
+                                        </React.Fragment>
+                            })
+                            : null
+                         }
+    
+                         <h3>
+                            {`rarity: "${rarity}"`}
+                         </h3>
+    
+                         <button onClick={this.addToDeck}>Add to Deck</button>
+    
+    
+                      </section>
+                   </main>
+               </div>
             </React.Fragment>
         )
     }

@@ -200,7 +200,7 @@ class CardGridPage extends React.Component {
                                 </label>
                                 <input className="hide" onChange={(e) => this.filterCard(e)} id="colorless" type="radio" value="colorless" name="type" />
     
-                                <button onClick={(e) => this.clearFilters(e)}>Clear Filters</button>
+                                <button className="clear" onClick={(e) => this.clearFilters(e)}>Clear Filters</button>
                             </div>
                             {/* <label htmlFor="set">Set</label>
                             <input type="" /> */}
