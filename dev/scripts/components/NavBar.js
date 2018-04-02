@@ -13,7 +13,6 @@ class NavBar extends React.Component {
     }
 
     loggedInCheck(res) {
-      console.log("res", res);
       if (res) {
          this.setState({
          loggedIn: true,
