@@ -1,0 +1,74 @@
+// style container
+.SingleFranchise {
+    max-width: 250px;
+    min-height: 350px;
+    padding: 20px;
+    margin: 10px;
+    border: 1px solid rgba(black, 0.5);
+    border-radius: 24px;
+
+    @include flex(column, center, center);
+    transition: 1s all ease;
+
+    img {
+        width: 100%;
+    }
+
+    h3 {
+        font-size: 2.4rem;
+        font-weight: 400;
+        margin: 15px 0;
+        transition: 2s;
+        transform-style: preserve-3d;
+    }
+    
+    &:hover, &:focus {
+        transform: rotateY(180deg);
+    }
+    // different franchises have different bgs
+    &.pokemon {
+        background: rgb(48, 165, 237);
+    }
+    &.yugioh {
+        background: #1D0C07;
+    }
+    &.magic {
+        background: #AD592F;
+    }
+    &.dragon {
+        background: #40A92C;
+    }
+
+    //styles for franchises that don't exist yet
+    &.inactive {
+        opacity: 0.5;
+        pointer-events: none;
+
+        &:after {
+            content: 'Coming Soon!';
+            position: relative;
+            z-index: 10;
+
+            display: inline-block;
+            width: 100%;
+            height: 30px;
+
+            color: white;
+            font-size: 30px;
+            text-align: center;
+        }
+
+        &:hover {
+
+        }
+    }
+}
+
+.FranchisePage {
+    padding: 20px;
+}
+
+.franchiseGrid {
+    @include flex(row, center, center);
+    flex-wrap: wrap;
+}

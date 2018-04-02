@@ -15,6 +15,7 @@ p{
 /* 2.4rems = base font size ✕ 2.4 */
 h1 {
     font-size: 4rem; /* equivalent of 24px */
+    margin: 20px 0;
 }
 
 /* 2rems = base font size ✕ 2 */
@@ -37,15 +38,20 @@ h5 {
 /* 1.6rems = base font size ✕ 1.6 */
 p {
     font-size: 1.6rem; /* equivalent of 16px */
-    display: inline;
+    display: inline-block;
     line-height: 10px;
+    line-height: 1.4;
+    margin: 10px 0;
 }
 
 a {
     text-decoration: none;
-    color: white;
+    color: black;
     // padding: 10px 20px;
     // border-radius: 5px;
+    &:visited {
+        color: black;
+    }
 }
 
 @media (max-width: 450px) {
@@ -54,3 +60,6 @@ a {
     }
 }
 
+form label, form select ,form button {
+    font-size: 1.6rem;
+}

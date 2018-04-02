@@ -33,7 +33,6 @@ class Index extends React.Component {
 
     logInUser(event) {
         event.preventDefault();
-        console.log('logging in user')
         const email = this.state.loginEmail;
         const password = this.state.loginPassword;
         firebase.auth().signInWithEmailAndPassword(email, password)
