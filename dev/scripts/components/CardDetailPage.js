@@ -65,8 +65,8 @@ class CardDetailPage extends React.Component {
     //Check the value of the current database
 
     const cardDetails = {
-        cardId: this.state.cardId,
-        cardName: this.state.cardInfo.name
+        id: this.state.cardInfo.id,
+        info: this.state.cardInfo
     }
     console.log(cardDetails);
 
@@ -81,9 +81,9 @@ class CardDetailPage extends React.Component {
         }
         // creatinga a new array from the cardArray, here we are testing the existing array with filter to see if this card already exists in our database
         // grabbing the cardName from cardDetails and checking to see if there is a match
-        const testArray = cardArray.filter(card => card.cardDetails.cardName.includes(cardDetails.cardName));
+        const testArray = cardArray.find(card => card.cardDetails.id === cardDetails.id);
 
-        if (testArray.length <= 0){
+        if (testArray === undefined){
             console.log("no match");
             dbRefUser
             .push({
