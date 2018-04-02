@@ -99,6 +99,7 @@ class CardDetailPage extends React.Component {
    }
 
     render() {     
+<<<<<<< HEAD
         const { ability, attacks, hp, name, types, weaknesses, imageUrl, rarity, supertype, text, set, nationalPokedexNumber } = this.state.cardInfo;
         console.log(attacks)
         return (
@@ -174,6 +175,114 @@ class CardDetailPage extends React.Component {
                </div>
             </React.Fragment>
         )
+=======
+        const { ability, attacks, hp, name, types, weaknesses, imageUrl, rarity, supertype, text, nationalPokedexNumber } = this.state.cardInfo;
+        return <React.Fragment>
+            <NavBar logInUser={this.logInUser} googleSignIn={this.googleSignIn} signOutUser={this.signOutUser} />
+            <div className="wrapper">
+               <main className="cardDetails">
+                  <aside className="detailsImg">
+                     <div className="mobileHeader">
+                        <h2>
+                           {name}
+                           <span>{supertype}</span>
+                        </h2>
+                     </div>
+                     <img src={imageUrl} alt={`a picture of ${name}`} />
+                  </aside>
+
+                  <section className="detailsContent">
+                     <div className="detailsContainer">
+                        <h2 className="header">
+                           {name}
+                           <span>{supertype}</span>
+                        </h2>
+                        {
+                           supertype === "Pokémon" ? <h2>
+                              HP{hp}
+                              <div className="typeHolder">
+                              <img src={`../../../images/${types}.png`} alt={`an emblem of the type ${types}`} />
+                              </div>
+                           </h2> : null
+                        }
+                     </div>
+
+                     {
+                        supertype === "Pokémon" ? attacks.map(
+                           (attack, i) => {
+                           return (
+                              <React.Fragment>
+                                 <div className="attackContainer">
+                                    <div
+                                       className="detailsContainer"
+                                       key={i}
+                                    >
+                                       <h3>{attack.name}</h3>
+                                       <h2>
+                                          <span>{attack.damage}</span>
+                                       </h2>
+                                    </div>
+                                    <div className="detailsContainer">
+                                       <p>{attack.text}</p>
+                                    </div>
+                                    <div className="details">
+                                       <h3>Cost</h3>
+                                       <div className="costContainer">
+                                          {attack.cost
+                                          ? attack.cost.map((cost, i) => {
+                                                return (
+                                                <div
+                                                   className="typeHolder"
+                                                   key={i}
+                                                >
+                                                   <img
+                                                      src={`../../../images/${cost}.png`}
+                                                      alt={`an emblem of the type ${types}`}
+                                                   />
+                                                </div>
+                                                );
+                                             })
+                                          : null}
+                                       </div>
+                                    </div>
+                                 </div>
+                              </React.Fragment>
+                           );
+                           }
+                        ) : null
+                     }
+                     
+                     {
+                        supertype === "Pokémon"
+                           ?  <div className="details">
+                                 <h3>Pokedex Number</h3>
+                                 <span>{nationalPokedexNumber}</span>
+                              </div>
+                           : null
+                     }
+
+                     {supertype === "Trainer" ? <div className="detailsContainer">
+                        <p>{text}</p>
+                     </div> : null}
+
+                     <div className="details">
+                     <h3>rarity</h3>
+                     <span>{rarity}</span>
+                     </div>
+
+                     <div className="detailsContainer">
+                     <div clasName="typeHolder">
+                        <img src="../../../images/cardDeck.svg" alt="" />
+                     </div>
+                     <button onClick={this.addToDeck}>
+                        Add to Deck
+                     </button>
+                     </div>
+                  </section>
+               </main>
+            </div>
+          </React.Fragment>;
+>>>>>>> 977089acbcb420dc512d31be381c3dbef8ab2207
     }
 };
 

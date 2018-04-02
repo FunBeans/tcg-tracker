@@ -1,7 +1,13 @@
+.mobileHeader {
+   display: none;
+}
+
 .cardDetails {
-   margin-top: 50px;
+   margin: 50px auto; 
    padding: 0 20px;
-   @extend .flex;
+   @include flex(row, center, center);
+   max-width: 70%;
+
 
    h2 {
       @extend .flex;
@@ -9,9 +15,16 @@
    }
 }
 
+.detailsImg {
+   flex-grow: 1;
+   min-width: 200px;
+   margin-bottom: 20px;
+}
+
 .detailsContent {
-   width: 70%;
+   max-width: 70%;
    margin-left: 5%;
+   flex-grow: 1;
    // border: 1px solid blue;
 //    @include flex(row, center, space-between);
 }
@@ -19,14 +32,8 @@
 .cardDetails .detailsContainer {
    @extend .flex;
    justify-content: space-between;
-   width: 50%;
-   // border: 1px solid pink;
+  flex-grow:1;
    margin-bottom: 15px;
-}
-
-.addButton{
-    @extend .button;   
-    font-size: 1.5rem;
 }
 
 .cardInfo{
@@ -37,4 +44,52 @@
 }
 .cardLabel{
     margin-right: 20px;
+}
+// .cardDetails .typeHolder {
+//    width: 20px;
+// }
+
+.addButton{
+   @extend .button;
+   width: 100%;
+   font-size: 2rem;
+   min-width: 200px;
+}
+
+.details {
+   @include flex(row, center, flex-start);
+   margin-bottom: 15px;
+}
+
+.details .costContainer {
+   @include flex(row, center, flex-start)
+}
+
+.attackContainer .detailsContainer {
+   margin-bottom: 5px;
+}
+
+@media (max-width: 740px) {
+   .cardDetails {
+      flex-direction: column;
+   }
+
+   .detailsContent {
+      margin-left: 0;
+   }
+}
+
+@media (max-width: 600px) {
+   .detailsContainer .header {
+      display: none;
+   }
+
+   .mobileHeader {
+      display: block;
+   }
+
+   .cardDetails,
+   .detailsContent {
+      max-width: 100%;
+   }
 }
