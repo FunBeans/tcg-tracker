@@ -68,12 +68,14 @@ class LoginPage extends React.Component {
           </React.Fragment>
         ) : (
           <React.Fragment>
-            <p className="logInIntro">
-              sign-in to start collecting!
-            </p>
-            <button className="lrgButton" onClick={this.signIn}>
-              <FaGoogle className="googleIcon" />
-            </button>
+            <div className="login">
+                <p className="logInIntro">
+                  sign-in to start collecting!
+                </p>
+              <button className="lrgButton logInButton" onClick={this.signIn}>
+                <FaGoogle className="googleIcon" />
+              </button>
+            </div>
           </React.Fragment>
         )}
       </React.Fragment>

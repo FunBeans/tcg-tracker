@@ -59,12 +59,12 @@ class CardGridPage extends React.Component {
                 allCardsInSet: allCards,
                 loadedCards: true,
             },() => {
-                // do another axios call if we don't have all the cards in the set
-                if (res.data.cards.length === 100) {
-                    this.loadCards(page + 1, set);
-                } else {
-                    // alert('loaded everything yay');
-                }
+                // // do another axios call if we don't have all the cards in the set
+                // if (res.data.cards.length === 100) {
+                //     this.loadCards(page + 1, set);
+                // } else {
+                //     // alert('loaded everything yay');
+                // }
             }) 
         });
     }
@@ -142,11 +142,13 @@ class CardGridPage extends React.Component {
                 <main className="CardGrid">
                     <div className="wrapper">
                         <h1>This is the card grid page</h1>
-                       <form> 
+                       <form className="filter"> 
                            <h2>Filter By</h2>
-                            <div className="selectSet">
-                                <label htmlFor="set">Set</label>
-                                <select value={this.state.set} onChange={this.searchBySet}>
+                            <div className="selectSets">
+                                <label htmlFor="set">
+                                <h3>Set</h3>
+                                </label>
+                                <select id="selectSet" value={this.state.set} onChange={this.searchBySet}>
                                     <option value="sm5">Sun and Moon Ultra Prism</option>
                                     <option value="xy1">XY</option>
                                     <option value="sm1">Sun and Moon</option>
@@ -158,20 +160,45 @@ class CardGridPage extends React.Component {
     
                             <div className="selectType" ref={this.typeFilter}>
                                 <h3>Type</h3>
-                                <label htmlFor="lightning">Electric</label>
-                                <input onChange={(e) => this.filterCard(e)} type="radio" value="lightning" name="type"/>
+                                <label htmlFor="lightning">
+                                    <img src="../../../images/Lightning.png" alt=""/>
+                                </label>
+                                <input className="hide" onChange={(e) => this.filterCard(e)} type="radio" value="lightning" id="lightning" name="type"/>
     
-                                <label htmlFor="ground">Ground</label>
-                                <input onChange={(e) => this.filterCard(e)} type="radio" value="ground" name="type"/>
+                                <label htmlFor="fighting">
+                                    <img src="../../../images/Fighting.png" alt="" />
+                                </label>
+                                <input className="hide" onChange={(e) => this.filterCard(e)} type="radio" value="fighting" id="fighting" name="type"/>
     
-                                <label htmlFor="grass">Grass</label>
-                                <input onChange={(e) => this.filterCard(e)} type="radio" value="grass" name="type"/>
+                                <label htmlFor="grass">
+                                    <img src="../../../images/Grass.png" alt="" />
+                                </label>
+                                <input className="hide" onChange={(e) => this.filterCard(e)} type="radio" value="grass" id="grass" name="type"/>
     
-                                <label htmlFor="fire">Fire</label>
-                                <input onChange={(e) => this.filterCard(e)} type="radio" value="fire" name="type"/>
+                                <label htmlFor="fire">
+                                    <img src="../../../images/Fire.png" alt="" />
+                                </label>
+                                <input className="hide" onChange={(e) => this.filterCard(e)} type="radio" value="fire" id="fire" name="type"/>
     
-                                <label htmlFor="psychic">Psychic</label>
-                                <input onChange={(e) => this.filterCard(e)} type="radio" value="psychic" name="type"/>
+                                <label htmlFor="psychic">
+                                    <img src="../../../images/Psychic.png" alt="" />
+                                </label>
+                                <input className="hide" onChange={(e) => this.filterCard(e)} type="radio" value="psychic" id="psychic" name="type"/>
+
+                                <label htmlFor="metal">
+                                    <img src="../../../images/Metal.png" alt="" />
+                                </label>
+                                <input className="hide" onChange={(e) => this.filterCard(e)} type="radio" value="metal" id="metal" name="type" />
+
+                                <label htmlFor="fairy">
+                                    <img src="../../../images/Fairy.png" alt="" />
+                                </label>
+                                <input className="hide" onChange={(e) => this.filterCard(e)} type="radio" value="fairy" id="fairy" name="type" />
+
+                                <label htmlFor="colorless">
+                                    <img src="../../../images/Colorless.png" alt="" />
+                                </label>
+                                <input className="hide" onChange={(e) => this.filterCard(e)} id="colorless" type="radio" value="colorless" name="type" />
     
                                 <button onClick={(e) => this.clearFilters(e)}>Clear Filters</button>
                             </div>
