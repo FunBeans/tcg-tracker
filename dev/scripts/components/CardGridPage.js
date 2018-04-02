@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter, Route, Link, Redirect, Switch } from 'react-router-dom';
 import credentials from '../credentials';
 import axios from 'axios';
+import NavBar from "./NavBar.js"
 import SingleCard from "./SingleCard";
 
 // This component will query the pokemon API and get all cards in the Basic set
@@ -136,66 +137,69 @@ class CardGridPage extends React.Component {
         // console.log(this)
         // console.log(cardSet);
         return (
-            <main className="CardGrid">
-                <div className="wrapper">
-                    <h1>This is the card grid page</h1>
-                   <form> 
-                       <h2>Filter By</h2>
-                        <div className="selectSet">
-                            <label htmlFor="set">Set</label>
-                            <select value={this.state.set} onChange={this.searchBySet}>
-                                <option value="sm5">Sun and Moon Ultra Prism</option>
-                                <option value="xy1">XY</option>
-                                <option value="sm1">Sun and Moon</option>
-                                <option value="bw1">Black and White</option>
-                                {/* <option value=“barbecue”>barbecue</option>
-                                <option value=“indian”>indian</option> */}
-                            </select>
+            <React.Fragment>
+                <NavBar logInUser={this.logInUser} googleSignIn={this.googleSignIn} signOutUser={this.signOutUser} />
+                <main className="CardGrid">
+                    <div className="wrapper">
+                        <h1>This is the card grid page</h1>
+                       <form> 
+                           <h2>Filter By</h2>
+                            <div className="selectSet">
+                                <label htmlFor="set">Set</label>
+                                <select value={this.state.set} onChange={this.searchBySet}>
+                                    <option value="sm5">Sun and Moon Ultra Prism</option>
+                                    <option value="xy1">XY</option>
+                                    <option value="sm1">Sun and Moon</option>
+                                    <option value="bw1">Black and White</option>
+                                    {/* <option value=“barbecue”>barbecue</option>
+                                    <option value=“indian”>indian</option> */}
+                                </select>
+                            </div>
+    
+                            <div className="selectType" ref={this.typeFilter}>
+                                <h3>Type</h3>
+                                <label htmlFor="lightning">Electric</label>
+                                <input onChange={(e) => this.filterCard(e)} type="radio" value="lightning" name="type"/>
+    
+                                <label htmlFor="ground">Ground</label>
+                                <input onChange={(e) => this.filterCard(e)} type="radio" value="ground" name="type"/>
+    
+                                <label htmlFor="grass">Grass</label>
+                                <input onChange={(e) => this.filterCard(e)} type="radio" value="grass" name="type"/>
+    
+                                <label htmlFor="fire">Fire</label>
+                                <input onChange={(e) => this.filterCard(e)} type="radio" value="fire" name="type"/>
+    
+                                <label htmlFor="psychic">Psychic</label>
+                                <input onChange={(e) => this.filterCard(e)} type="radio" value="psychic" name="type"/>
+    
+                                <button onClick={(e) => this.clearFilters(e)}>Clear Filters</button>
+                            </div>
+                            {/* <label htmlFor="set">Set</label>
+                            <input type="" /> */}
+                        </form>
+                        <div className="displayCards">
+                            {
+                                // this.state.loadedCards ? console.log('cards are loaded') : console.log('nothing there')
+                                this.state.loadedCards ? 
+                                cardSet.map(card => {
+                                    return (
+                                        <Link key={card.id} to={`/franchises/pokemon/${card.id}`}  >
+                                            <SingleCard data={card} key={card.id}/>
+                                        </Link>
+                                    )
+                                    // console.log(card);
+                                })
+                                : 
+                                null 
+                            }
+                            
                         </div>
-
-                        <div className="selectType" ref={this.typeFilter}>
-                            <h3>Type</h3>
-                            <label htmlFor="lightning">Electric</label>
-                            <input onChange={(e) => this.filterCard(e)} type="radio" value="lightning" name="type"/>
-
-                            <label htmlFor="ground">Ground</label>
-                            <input onChange={(e) => this.filterCard(e)} type="radio" value="ground" name="type"/>
-
-                            <label htmlFor="grass">Grass</label>
-                            <input onChange={(e) => this.filterCard(e)} type="radio" value="grass" name="type"/>
-
-                            <label htmlFor="fire">Fire</label>
-                            <input onChange={(e) => this.filterCard(e)} type="radio" value="fire" name="type"/>
-
-                            <label htmlFor="psychic">Psychic</label>
-                            <input onChange={(e) => this.filterCard(e)} type="radio" value="psychic" name="type"/>
-
-                            <button onClick={(e) => this.clearFilters(e)}>Clear Filters</button>
-                        </div>
-                        {/* <label htmlFor="set">Set</label>
-                        <input type="" /> */}
-                    </form>
-                    <div className="displayCards">
-                        {
-                            // this.state.loadedCards ? console.log('cards are loaded') : console.log('nothing there')
-                            this.state.loadedCards ? 
-                            cardSet.map(card => {
-                                return (
-                                    <Link key={card.id} to={`/franchises/pokemon/${card.id}`}  >
-                                        <SingleCard data={card} key={card.id}/>
-                                    </Link>
-                                )
-                                // console.log(card);
-                            })
-                            : 
-                            null 
-                        }
-                        
+    
+                        <button onClick={this.loadMoreCards}>Load More</button>
                     </div>
-
-                    <button onClick={this.loadMoreCards}>Load More</button>
-                </div>
-            </main>
+                </main>
+            </React.Fragment>
         )
     }
 }

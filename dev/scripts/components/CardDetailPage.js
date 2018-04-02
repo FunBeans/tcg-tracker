@@ -1,6 +1,7 @@
 import React from "react";
 import credentials from '../credentials';
 import axios from 'axios';
+import NavBar from "./NavBar.js"
 // import { BrowserHistory } from 'react-router-dom';
 
 
@@ -131,6 +132,7 @@ class CardDetailPage extends React.Component {
         console.log(attacks)
         return (
             <React.Fragment>
+            <NavBar logInUser={this.logInUser} googleSignIn={this.googleSignIn} signOutUser={this.signOutUser} />
                <p>Card detail page</p>
 
                <main className="cardDetails">
