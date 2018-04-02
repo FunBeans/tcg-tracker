@@ -4,6 +4,7 @@ import FranchisePage from "./FranchisePage";
 import SplashPage from "./SplashPage";
 import CardGridPage from "./CardGridPage";
 import CardDetailPage from "./CardDetailPage";
+import NavBar from "./NavBar.js"
 
 class Router extends React.Component {
     constructor() {
@@ -18,6 +19,7 @@ class Router extends React.Component {
         return (
             <HashRouter history={BrowserHistory}>
                 <div>
+                    <NavBar logInUser={this.logInUser} googleSignIn={this.googleSignIn} signOutUser={this.signOutUser}/>
                     <Route exact path="/" component={SplashPage} />
                     <Route exact path="/franchises" component={FranchisePage} />
                     <Route exact path="/franchises/pokemon" component={CardGridPage} />

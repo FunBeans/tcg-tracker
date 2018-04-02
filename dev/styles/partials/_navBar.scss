@@ -1,0 +1,12 @@
+.NavBar{
+    background: $primary;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.5);
+    @include flex(row, flex-start, space-between);
+}
+.navLogo{
+    width: 30px;
+}
+.navIcon{
+    width: 30px;
+
+}
