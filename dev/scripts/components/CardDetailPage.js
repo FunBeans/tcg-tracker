@@ -99,7 +99,7 @@ class CardDetailPage extends React.Component {
    }
 
     render() {     
-        const { ability, attacks, hp, name, types, weaknesses, imageUrl, rarity, supertype, text } = this.state.cardInfo;
+        const { ability, attacks, hp, name, types, weaknesses, imageUrl, rarity, supertype, text, set, nationalPokedexNumber } = this.state.cardInfo;
         console.log(attacks)
         return (
             <React.Fragment>
@@ -112,7 +112,6 @@ class CardDetailPage extends React.Component {
                       </aside>
     
                       <section className="detailsContent">
-                      
                          <div className="detailsContainer">
                             <h2>
                                {name}
@@ -155,11 +154,19 @@ class CardDetailPage extends React.Component {
                             : null
                          }
     
-                         <h3>
-                            {`rarity: "${rarity}"`}
-                         </h3>
-    
-                         <button onClick={this.addToDeck}>Add to Deck</button>
+                         <div className="cardInfo">
+                            <div className="cardLabel">
+                                <h3>rarity</h3>
+                                <h3>set</h3>
+                                <h3>pokedex #</h3>
+                            </div>
+                            <div className="cardStuff">
+                                <h3>{rarity}</h3>
+                                <h3>{set}</h3>
+                                <h3>{nationalPokedexNumber}</h3>
+                            </div>
+                         </div>
+                         <button  className="addButton" onClick={this.addToDeck}>Add to Deck</button>
     
     
                       </section>
