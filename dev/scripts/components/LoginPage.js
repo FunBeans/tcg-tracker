@@ -60,24 +60,21 @@ class LoginPage extends React.Component {
     return (
       <React.Fragment>
         {this.state.loggedIn ? (
-          <div>
+          <React.Fragment>
             {/* <h2>Welcome, {this.state.user.displayName}</h2> */}
-            <button
-              className="smlButton logOutButton titleButton"
-              onClick={this.signOut}
-            >
-              Sign Out
-            </button>
-          </div>
+            <div className="smlButton logOutButton titleButton" onClick={this.signOut}>
+              <img src="../../../images/logoutIcon.svg" alt=""/>
+            </div>
+          </React.Fragment>
         ) : (
-          <div>
+          <React.Fragment>
             <p className="logInIntro">
-              Sign-in with Google and Start Collecting!
+              sign-in to start collecting!
             </p>
             <button className="lrgButton" onClick={this.signIn}>
-              <FaGoogle className="googleIcon" />Sign in with Google
+              <FaGoogle className="googleIcon" />
             </button>
-          </div>
+          </React.Fragment>
         )}
       </React.Fragment>
     );

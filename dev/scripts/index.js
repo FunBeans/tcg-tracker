@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from "react-dom";
 import Router from "./components/Router.js"
-import NavBar from "./components/NavBar.js"
+// import NavBar from "./components/NavBar.js"
 
 //Initialize Firebase
 var config = {
@@ -118,7 +118,7 @@ class Index extends React.Component {
     render() {
         return (
             <div className="Index">
-                <NavBar logInUser={this.logInUser} googleSignIn={this.googleSignIn} signOutUser={this.signOutUser} />
+                {/* <NavBar logInUser={this.logInUser} googleSignIn={this.googleSignIn} signOutUser={this.signOutUser} /> */}
                 <Router />
             </div>
         )

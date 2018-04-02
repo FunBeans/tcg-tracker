@@ -30,7 +30,11 @@ class NavBar extends React.Component {
     render() {
         return (
             <nav className="NavBar">
-                <p>Nav bar</p>
+                <div className="navLogo"><img src="../../../images/Card-blueWhite.png" alt="tcg logo"/></div>
+                <Link to="/"><div className="navIcon"><img src="../../../images/homeIcon.svg" alt="home icon" /></div></Link>
+                <Link to="/franchises/pokemon"><div className="navIcon"><img src="../../../images/pokeBall.svg" alt="pokemon icon" /></div></Link>
+                <div className="navIcon"><img src="../../../images/cardDeck.svg" alt="myDeck icon" /></div>
+                <div className="navIcon"><img src="" alt="" /></div>
                 {/* <button className="showLoginBtn" onClick={() => this.setState({ showLogin: true })}>Log In</button> */}
                 {/* { this.state.showLogin ? 
                     <LoginPage logInUser={this.props.logInUser} googleSignIn={this.props.googleSignIn} signOutUser={this.props.signOutUser} />
