@@ -4,6 +4,9 @@
     height: 100vh;
     background: linear-gradient($primary, $secondary);
     @include flex(row, center, center);
+    // .NavBar{
+    //     display: none;
+    // }
 }
 .splashContentContainer{
     width: 600px;
