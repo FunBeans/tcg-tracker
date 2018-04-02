@@ -1,6 +1,17 @@
 .cardDetails button {
    display: block;
 }
+.logInButton{
+    background: none;
+    border:none;
+    color:white;
+    font-size: 2rem;
+    transition: all 0.5s ease-in-out;
+    &:hover,
+    &:hover p{
+        color: $text;   
+    }
+}
 .logOutButton{
     width: 30px;
     height: 30px;

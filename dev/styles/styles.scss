@@ -17,12 +17,22 @@
     width: 95%;
     max-width: 1250px;
     margin: 0 auto;
+    padding-top: 60px; 
+    @media (max-width: 480px) {
+        padding-top: 20px; 
+        padding-left: 40px;
+    }
 }
 
-.flex {
-   display: flex;
+.flex{
+    display: flex;
 }
 
 img{
     max-width: 100%;
+}
+
+select{
+    width: 300px;
+    border-radius: 30px;
 }
