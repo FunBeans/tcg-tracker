@@ -18,12 +18,14 @@ class MyDeck extends React.Component {
 
    componentDidMount() {
       firebase.auth().onAuthStateChanged(user => {
-        this.setState({ 
-            user: user 
-            }, () => {
-               this.getCardDeck();
-            }
-         );
+         user
+            ? this.setState({ 
+                  user: user 
+                  }, () => {
+                     this.getCardDeck();
+                  }
+               )
+            : null;
       })
    }
 
@@ -60,16 +62,14 @@ class MyDeck extends React.Component {
                         <h1>This Is Your Deck:</h1>
                         <div className="displayCards">
                             {
-                                // this.state.loadedCards ? console.log('cards are loaded') : console.log('nothing there')
                                 this.state.loadedCards ? 
                                 cardSet.map(card => {
                                     return <Link key={card.cardDetails.id} to={`/franchises/pokemon/${card.cardDetails.id}`}>
                                         <SingleCard data={card.cardDetails.info} key={card.cardDetails.id} />
                                       </Link>;
-                                    // console.log(card);
                                 })
                                 : 
-                                null 
+                                <p>Sign and Build Your Own Deck!</p> 
                             }
                             
                         </div>

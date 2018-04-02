@@ -37,11 +37,10 @@ h5 {
 
 /* 1.6rems = base font size ✕ 1.6 */
 p {
-    font-size: 1.6rem; /* equivalent of 16px */
+    font-size: 1.2rem; /* equivalent of 16px */
     display: inline-block;
     line-height: 10px;
     line-height: 1.4;
-    margin: 10px 0;
 }
 
 a {
@@ -56,6 +55,9 @@ a {
 
 span {
    color: $secondary;
+   font-style: italic;
+   font-size: 1.4rem;
+   font-weight: 500;
 }
 
 @media (max-width: 450px) {
