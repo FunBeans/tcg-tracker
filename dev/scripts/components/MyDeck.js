@@ -1,6 +1,6 @@
 import React from "react";
 
-class AddToDeckModal extends React.Component {
+class MyDeck extends React.Component {
 
     render() {
         return (
@@ -9,4 +9,4 @@ class AddToDeckModal extends React.Component {
     }
 };
 
-export default AddToDeckModal;
+export default MyDeck;
