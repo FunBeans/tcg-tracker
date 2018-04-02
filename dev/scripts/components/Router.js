@@ -17,7 +17,7 @@ class Router extends React.Component {
     }
 
     render() {
-        return <HashRouter history={BrowserHistory}>
+        return <BrowserRouter history={BrowserHistory}>
             <div>
               <Route exact path="/" component={SplashPage} />
               <Route exact path="/franchises" component={FranchisePage} />
@@ -25,7 +25,7 @@ class Router extends React.Component {
               <Route exact path="/franchises/pokemon/:cardId" component={CardDetailPage} />
               <Route exact path="/myDecks" component={MyDeck} />
             </div>
-          </HashRouter>;
+          </BrowserRouter>;
     }
 };
 
