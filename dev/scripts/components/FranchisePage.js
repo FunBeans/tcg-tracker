@@ -12,8 +12,10 @@ class FranchisePage extends React.Component {
                 <main className="FranchisePage">
                     <section>
                         <div className="wrapper">
-                            <h1>Pick a Franchise</h1>
-                            <p> Upcoming franchises: Magic:The Gathering, Yu-gi-oh </p>
+                            <div className="franchiseTitle">
+                                <h1>Pick a Franchise</h1>
+                                <p> Upcoming franchises: Magic:The Gathering, Yu-gi-oh </p>
+                            </div>
                                 <div className="franchiseGrid">
                                     <SingleFranchise franchiseName="pokemon" image="../../../images/logoPokemon.png" active="active"/>
                                     <SingleFranchise franchiseName="yugioh" image="../../../images/logoYugioh.png" active="inactive"/>

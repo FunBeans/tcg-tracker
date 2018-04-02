@@ -1,22 +1,24 @@
 .NavBar{
     background: $primary;
     position: fixed;
-    width: 100%;
+    width: 50px;
+    height: 100vh;
+    padding: 30px 0;
     box-shadow: 0 3px 10px rgba(0,0,0,0.5);
-    padding: 0 10px;
-    @include flex(row, center, space-between);
-    @media (max-width: 480px) {
-        @include flex(column, center, space-between);
-        width: 50px;
-        height: 100vh;
-        padding: 10px 0;
-    }
+    // padding: 0 10px;
+    @include flex(column, center, space-between);
+    // @media (max-width: 480px) {
+    //     @include flex(column, center, space-between);
+        
+    // }
 }
 .navLogo{
     width: 30px;
+    margin-bottom: 15px;
 }
 .navIcon{
     width: 30px;
+    margin-bottom: 15px;
     // &:hover{
     //     transform: scale(1.2px);
     // }

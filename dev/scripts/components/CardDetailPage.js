@@ -184,22 +184,23 @@ class CardDetailPage extends React.Component {
                            : null
                      }
 
-                     {supertype === "Trainer" ? <div className="detailsContainer">
-                        <p>{text}</p>
-                     </div> : null}
+                     {
+                        supertype === "Trainer" 
+                        ?  <div className="detailsContainer">
+                              <p>{text}</p>
+                           </div> 
+                        : null
+                     }
 
                      <div className="details">
-                     <h3>rarity</h3>
-                     <span>{rarity}</span>
+                        <h3>rarity</h3>
+                        <span>{rarity}</span>
                      </div>
 
                      <div className="detailsContainer">
-                     <div className="typeHolder">
-                        <img src="../../../images/cardDeck.svg" alt="" />
-                     </div>
-                     <button onClick={this.addToDeck}>
-                        Add to Deck
-                     </button>
+                        <button className="addButton" onClick={this.addToDeck}>
+                           Add to Deck
+                        </button>
                      </div>
                   </section>
                </main>

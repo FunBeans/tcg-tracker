@@ -1,5 +1,6 @@
 @import 'partials/normalise';
 @import 'partials/variables';
+@import 'partials/buttonForm';
 @import 'partials/mixins';
 @import 'partials/typography';
 @import 'partials/splash';
@@ -10,16 +11,15 @@
 @import 'partials/singleCard';
 @import 'partials/cardDetail';
 @import 'partials/addDeck';
-@import 'partials/buttonForm';
 @import 'partials/singleFranchise';
 
 .wrapper {
     width: 95%;
     max-width: 1250px;
     margin: 0 auto;
-    padding-top: 60px; 
+    padding-top: 20px; 
     @media (max-width: 480px) {
-        padding-top: 20px; 
+        // padding-top: 20px; 
         padding-left: 40px;
     }
 }
