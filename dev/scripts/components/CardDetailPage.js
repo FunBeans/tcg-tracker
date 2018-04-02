@@ -55,7 +55,7 @@ class CardDetailPage extends React.Component {
             });
     }
 
-    addToDeck() {
+   addToDeck() {
       console.log("clicked")
       console.log(this.state.cardInfo)
       const dbRefUser = firebase.database().ref(`users/${firebase.auth().currentUser.uid}`);
@@ -65,67 +65,38 @@ class CardDetailPage extends React.Component {
     //We want to check if the card already exists in firebase so it doesn't add again
     //Check the value of the current database
 
-    const cardDetails = {
-        id: this.state.cardInfo.id,
-        info: this.state.cardInfo
-    }
-    console.log(cardDetails);
+      const cardDetails = {
+         id: this.state.cardInfo.id,
+         info: this.state.cardInfo
+      }
 
-    dbRefUser.on('value', (snapshot) => {
-        const cardArray = [];
-        const selectedCard = snapshot.val();
-        // snapshot value captures the value of what is added when the function is clicked and pushed to fbDB
-        for (let itemKey in selectedCard){
-            selectedCard[itemKey].key = itemKey;
-            cardArray.push(selectedCard[itemKey])
-            console.log(cardArray);
-        }
-        // creatinga a new array from the cardArray, here we are testing the existing array with filter to see if this card already exists in our database
-        // grabbing the cardName from cardDetails and checking to see if there is a match
-        const testArray = cardArray.find(card => card.cardDetails.id === cardDetails.id);
+      dbRefUser.on('value', (snapshot) => {
+         const cardArray = [];
+         const selectedCard = snapshot.val();
+         // snapshot value captures the value of what is added when the function is clicked and pushed to fbDB
+         for (let itemKey in selectedCard){
+               selectedCard[itemKey].key = itemKey;
+               cardArray.push(selectedCard[itemKey])
+               console.log(cardArray);
+         }
+         // creatinga a new array from the cardArray, here we are testing the existing array with filter to see if this card already exists in our database
+         // grabbing the cardName from cardDetails and checking to see if there is a match
+         const testArray = cardArray.find(card => card.cardDetails.id === cardDetails.id);
 
-        if (testArray === undefined){
-            console.log("no match");
-            dbRefUser
-            .push({
-              //  cardInfo: this.state.cardInfo
-              // cardId: this.state.cardId
-              cardDetails
-            })   
-        }
-        else {
-            console.log("matched");
-        }
-    })
-    
-
-
-      // const duplicateRecipe = this.state.recipes.find((item) => recipeData.url === item.url);
-      // if (duplicateRecipe === undefined) {
-      //    //then set state
-      //    recipeState.push(recipeData);
-      //    this.setState({
-      //       recipes: recipeState
-      //    })
-      //    //update firebase
-      //    const dbref = firebase.database().ref("/recipes");
-      //    dbref.push(recipeData);
-      // } else {
-      //    console.log("error")
-      // }
-
-      // if we want to put in a public database
-      // .then((data) => {
-      //    const dbRefPublic = firebase.database().ref(`/public/${data.ref.key}`);
-      //    console.log(dbRefPublic);
-      //    dbRefPublic.update({
-      //       start: this.props.location.state.firstChoice,
-      //       end: this.props.location.state.endChoice,
-      //       startTime: this.state.startTime
-      //    });
-      // });
-      console.log("card added")
-    }
+         if (testArray === undefined){
+               console.log("no match");
+               dbRefUser
+               .push({
+               //  cardInfo: this.state.cardInfo
+               // cardId: this.state.cardId
+               cardDetails
+               })   
+         }
+         else {
+               console.log("matched");
+         }
+      })
+   }
 
     render() {     
         const { ability, attacks, hp, name, types, weaknesses, imageUrl, rarity, supertype, text } = this.state.cardInfo;
@@ -133,8 +104,6 @@ class CardDetailPage extends React.Component {
         return (
             <React.Fragment>
             <NavBar logInUser={this.logInUser} googleSignIn={this.googleSignIn} signOutUser={this.signOutUser} />
-               <p>Card detail page</p>
-
                <main className="cardDetails">
 
                   <aside className="detailsImg">
@@ -159,27 +128,28 @@ class CardDetailPage extends React.Component {
                            : null
                         }  
                      </div>
-                     
-                     {/* text if it is a trainer/item card */}
-                     <p>{text}</p>
 
                      {
-                        attacks
+                        supertype === "Pokémon"
                         ? attacks.map((attack, i) => {
 
-                           return   <React.Fragment key={i}>
-                                       <h2>
-                                          {attack.name}
-                                          {
-                                             attack.cost 
-                                             ? attack.cost.map((cost,i) => {
-                                                return <img key={i} src={`../../../images/${cost}.png`} alt={`an emblem of the type ${types}`}/>
-                                             })
-                                             :null
-                                          }
-                                       </h2>
-                                       <p>{attack.text}</p>
-                                    </React.Fragment>;
+                           return   <React.Fragment>
+                                       <div className="detailsContainer" key={i}>
+                                          <h2>
+                                             {attack.name}
+                                             {
+                                                attack.cost 
+                                                ? attack.cost.map((cost,i) => {
+                                                   return <img key={i} src={`../../../images/${cost}.png`} alt={`an emblem of the type ${types}`}/>
+                                                })
+                                                :null
+                                             }
+                                          </h2>
+                                       </div>
+                                       <div className="detailsContainer">
+                                          <p>{attack.text}</p>
+                                       </div>
+                                    </React.Fragment>
                         })
                         : null
                      }
