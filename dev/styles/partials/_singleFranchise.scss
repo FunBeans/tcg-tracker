@@ -64,6 +64,13 @@
     }
 }
 
+.franchiseTitle{
+    padding-left: 100px;
+    @media (max-width: $break-xsm) {
+        padding-left: 0;
+    }
+}
+
 .FranchisePage {
     padding: 20px;
 }

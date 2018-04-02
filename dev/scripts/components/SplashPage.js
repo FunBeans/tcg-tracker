@@ -19,7 +19,7 @@ class SplashPage extends React.Component {
                     </div>
                     <div className="appEntry">
                         <h4>pick a franchise & start collecting!</h4>
-                        <Link to={`/franchises`}><h2>enter <i class="fas fa-caret-right"></i></h2></Link>
+                        <Link to={`/franchises`}><h2>enter <i className="fas fa-caret-right"></i></h2></Link>
                     </div>
                 </div>
             </div>

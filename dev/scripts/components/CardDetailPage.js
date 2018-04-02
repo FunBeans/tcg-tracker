@@ -99,7 +99,6 @@ class CardDetailPage extends React.Component {
    }
 
     render() {     
-
         const { ability, attacks, hp, name, types, weaknesses, imageUrl, rarity, supertype, text, nationalPokedexNumber } = this.state.cardInfo;
         return <React.Fragment>
             <NavBar logInUser={this.logInUser} googleSignIn={this.googleSignIn} signOutUser={this.signOutUser} />
