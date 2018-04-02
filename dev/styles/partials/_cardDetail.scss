@@ -1,4 +1,6 @@
 .cardDetails {
+   margin-top: 50px;
+   padding: 0 20px;
    @extend .flex;
 
    h2 {
@@ -8,13 +10,15 @@
 }
 
 .detailsContent {
-   width: 50%;
+   width: 70%;
    margin-left: 5%;
+   // border: 1px solid blue;
 }
 
 .cardDetails .detailsContainer {
    @extend .flex;
    justify-content: space-between;
-   max-width: 400px;
    width: 50%;
+   // border: 1px solid pink;
+   margin-bottom: 15px;
 }

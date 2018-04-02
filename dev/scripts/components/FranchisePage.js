@@ -1,6 +1,6 @@
 import React from "react";
-import { BrowserRouter, Route, Link, Redirect, Switch } from 'react-router-dom';
 import CardGridPage from "./CardGridPage";
+import SingleFranchise from "./SingleFranchise";
 import NavBar from "./NavBar.js"
 
 class FranchisePage extends React.Component {
@@ -8,12 +8,21 @@ class FranchisePage extends React.Component {
         return (
             <React.Fragment>
                 <NavBar logInUser={this.logInUser} googleSignIn={this.googleSignIn} signOutUser={this.signOutUser} />
-                <div className="wrapper">
-                    <h1>Pick a Franchise</h1>
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ducimus quae corrupti, non delectus iste pariatur deserunt nam rerum nostrum quos illo odio itaque reiciendis mollitia dolores vitae accusantium soluta veniam adipisci illum distinctio? Ad molestias iusto qui quae impedit similique, iure suscipit aspernatur quo ea magnam perferendis dolores explicabo numquam!
-                    <Link to={`/franchises/pokemon`}>Pokemon</Link>
-                    </p>
-                </div>
+
+                <main className="FranchisePage">
+                    <section>
+                        <div className="wrapper">
+                            <h1>Pick a Franchise</h1>
+                            <p> Upcoming franchises: Magic:The Gathering, Yu-gi-oh </p>
+                                <div className="franchiseGrid">
+                                    <SingleFranchise franchiseName="pokemon" image="../../../images/logoPokemon.png" active="active"/>
+                                    <SingleFranchise franchiseName="yugioh" image="../../../images/logoYugioh.png" active="inactive"/>
+                                    <SingleFranchise franchiseName="magic" image="../../../images/logoMagic.png" active="inactive"/>
+                                    <SingleFranchise franchiseName="dragon" image="../../../images/logoDragonball.png" active="inactive"/>
+                                </div>
+                        </div>
+                    </section>
+                </main>
 
             </React.Fragment>
         )
