@@ -3,6 +3,10 @@
     padding: 50px 20px;
 }
 
+.cardGridTitle{
+    width: 60%;
+}
+
 .displayCards{
     max-width: 100%;
     @include flex (row, center, center);
