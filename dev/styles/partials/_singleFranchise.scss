@@ -66,6 +66,13 @@
 
 .franchiseTitle{
     padding-left: 100px;
+    p{
+        border: 1px solid $text;
+        text-align: center;
+        padding: 5px;
+        // margin: 0 auto;
+        display: block;
+    }
     @media (max-width: $break-xsm) {
         padding-left: 0;
     }

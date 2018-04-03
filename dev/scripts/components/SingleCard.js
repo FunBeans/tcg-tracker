@@ -5,7 +5,7 @@ const SingleCard = (props) => {
     // console.log(props.data.imageUrl);
     return (
         <div className="SingleCard">
-            <p>{props.data.name}</p>
+            <h3>{props.data.name}</h3>
             <img src={props.data.imageUrl} alt=""/>
         </div>
     )
