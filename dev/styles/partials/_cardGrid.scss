@@ -1,40 +1,76 @@
 .CardGrid {
-    border: 1px solid black;
+    // border: 1px solid black;
     padding: 50px 20px;
 }
 
 .cardGridTitle{
-    width: 60%;
+    width: 30%;
+    margin: 0 auto;
+    @media (max-width: 480px) {
+        width: 80%;
+    }
+}
+
+.filter{
+    margin: 0 auto;
+    width: 50%;
+    @include flex(column, center,center);
+    border-bottom: 3px solid $text;
+    position: relative;
+    @media (max-width: $break-xsm) {
+        width: 80%;
+    }
 }
 
 .displayCards{
     max-width: 100%;
     @include flex (row, center, center);
     flex-wrap: wrap;
+    margin-top: 30px;
+    h3{
+        @extend .button;
+        text-align: center;
+        background: $primary;
+        padding: 10px;
+        color: white;
+    }
     // flex-direction: row;
     // align-items: center;
     // justify-content: center;
 }
-input[type="radio"]{
-    display: none;
+
+.selectType{
+    input[type="radio"]{
+        display: none;
+    }
+    padding-bottom: 80px;
 }
-// .CardGrid .wrapper{ 
-//     .filter{
-//         .selectSet{
-//             select{
-//                 width: 300px;
-//             }
-//         } 
-//     }
-// }
 
 #selectSet{
     font-size: 1.5rem;
     width: 300px;
     height: 50px;
     padding: 10px;
+    border-radius: 30px;
+    @media (max-width: $break-xsm) {
+        width: 250px;
+    }
 }
 
 .clear{
     @extend .button;
+    position: absolute;
+    bottom: 20px;
+    left: 240px;
+    @media (max-width: 768px) {
+        left: 100px;
+    }   
+    @media (max-width: $break-xsm) {
+        left: 0px;
+    }
+}
+
+.load{
+    @extend .button;   
+    margin-left: 60px;
 }

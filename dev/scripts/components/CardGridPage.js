@@ -225,7 +225,7 @@ class CardGridPage extends React.Component {
                             
                         </div>
     
-                        <button onClick={this.loadMoreCards}>Load More</button>
+                        <button className="load" onClick={this.loadMoreCards}>Load More</button>
                     </div>
                 </main>
             </React.Fragment>

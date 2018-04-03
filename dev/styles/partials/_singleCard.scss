@@ -1,4 +1,16 @@
 .SingleCard {
     width: 300px;
     @include flex (column, center, center);
+    margin-bottom: 60px;
+    img{
+        box-shadow: 0 6px 10px rgba(0,0,0,0.5);
+        border-radius: 10px;
+        transition: all 0.5s;
+        &:hover{
+            transform: scale(1.05);
+        }
+    }
+    h3{
+        margin-bottom: 10px;
+    }
 }
