@@ -12,48 +12,67 @@ class CardDetailPage extends React.Component {
             cardId: '',
             cardInfo: {},
             cardCollection: [],
-            user: {}
+            user: {},
+            inCollection: false
         }
 
         this.getCardInfo = this.getCardInfo.bind(this);
         this.addToDeck = this.addToDeck.bind(this);
+        this.collectionCheck = this.collectionCheck.bind(this);
     }
 
-    componentDidMount() {
+   componentDidMount() {
       console.log(this.props.match.params.cardId);
       //have user's firebase information logged in state
       firebase.auth().onAuthStateChanged(user => {
         this.setState({ user: user });
       });
-      //connect to user's firebase
-      const dbref = firebase
-        .database()
-        .ref(`users/${this.state.user.uid}`);
-    //   dbref.on("value", snapshot => {
-    //      console.log(snapshot.val());
-    //   //    const data = snapshot.val();
-    //   //    const state = [];
-    //   //    for (let key in data) {
-    //   //    data[key].key = key;
-    //   //    state.push(data[key]);
-    //   //    }
-    //   //    console.log(state);
-    //   //    this.setState({ recipes: state });
-    //   });
-      this.setState({ cardId : this.props.match.params.cardId },
+      const dbRefUser = firebase.database().ref(`users/${firebase.auth().currentUser.uid}`);
+      dbRefUser.on('value', (snapshot) => {
+         const cardArray = [];
+         const selectedCard = snapshot.val();
+         // snapshot value captures the value of what is added when the function is clicked and pushed to fbDB
+         for (let itemKey in selectedCard){
+            selectedCard[itemKey].key = itemKey;
+            cardArray.push(selectedCard[itemKey])
+         }
+         this.setState({
+            cardCollection: cardArray,
+            cardId : this.props.match.params.cardId
+         },
          () => {
                // wait until state is set before making axios call
-               this.getCardInfo()
-         }
-      )
-    }
+               this.getCardInfo();
+         })
+      }, () => {
+         this.collectionCheck();
+      })
+   }
 
-    getCardInfo() {
-        axios.get(`${credentials.pokemonApiUrl}/cards/${this.state.cardId}`)
-            .then((res) => {
-                this.setState({ cardInfo: res.data.card },() => this.render());
-            });
-    }
+   getCardInfo() {
+      axios.get(`${credentials.pokemonApiUrl}/cards/${this.state.cardId}`)
+         .then((res) => {
+               this.setState({ cardInfo: res.data.card },() => this.render());
+         }); 
+   }
+
+   collectionCheck() {
+      console.log("checked");
+      const deck = this.state.cardCollection;
+      const thisCard = this.state.cardInfo;
+      console.log(deck, thisCard)
+      const duplicateCard = deck.find((item) => thisCard.id === item.cardDetails.id);
+      if (duplicateCard === undefined) {
+         this.setState({
+            inCollection: false
+         })
+      } else {
+         this.setState({
+            inCollection: true
+         })
+      }
+      
+   }
 
    addToDeck() {
       console.log("clicked")
@@ -118,7 +137,6 @@ class CardDetailPage extends React.Component {
                      <div className="detailsContainer">
                         <h2 className="header">
                            {name}
-                           <span>{supertype}</span>
                         </h2>
                         {
                            supertype === "Pokémon" ? <h2>
