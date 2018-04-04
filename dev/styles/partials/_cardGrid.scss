@@ -17,9 +17,22 @@
     @include flex(column, center,center);
     border-bottom: 3px solid $text;
     position: relative;
+
+    h3 {
+       text-align: center;
+    }
     @media (max-width: $break-xsm) {
         width: 80%;
     }
+}
+
+.selectTypeContainer {
+   @include flex(row, center, center);
+   margin-bottom: 20px;
+}
+
+.clearContainer {
+   @include flex(row, center, center);
 }
 
 .displayCards{
@@ -34,16 +47,13 @@
         padding: 10px;
         color: white;
     }
-    // flex-direction: row;
-    // align-items: center;
-    // justify-content: center;
 }
 
 .selectType{
     input[type="radio"]{
         display: none;
     }
-    padding-bottom: 80px;
+    padding-bottom: 40px;
 }
 
 #selectSet{
@@ -52,22 +62,14 @@
     height: 50px;
     padding: 10px;
     border-radius: 30px;
+    margin-bottom: 20px;
     @media (max-width: $break-xsm) {
-        width: 250px;
+        width: 225px;
     }
 }
 
 .clear{
     @extend .button;
-    position: absolute;
-    bottom: 20px;
-    left: 240px;
-    @media (max-width: 768px) {
-        left: 100px;
-    }   
-    @media (max-width: $break-xsm) {
-        left: 0px;
-    }
 }
 
 .load{

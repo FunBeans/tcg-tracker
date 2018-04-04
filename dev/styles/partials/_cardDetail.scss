@@ -4,14 +4,21 @@
 
 .cardDetails {
    margin: 50px auto; 
-   padding: 0 20px;
    @include flex(row, center, center);
    max-width: 70%;
+   padding: 20px;
+   border-radius: 25px;
+   border: 10px solid rgb(33, 91, 195);
+   background: #89b4fd;
 
 
    h2 {
       @extend .flex;
       align-items: center;
+   }
+
+   h2, h3 {
+      color: white;
    }
 }
 
@@ -54,7 +61,8 @@
    @extend .button;
    width: 100%;
    font-size: 2rem;
-   min-width: 200px;
+   min-width: 175px;
+   background: white;
 }
 
 .details {
@@ -92,5 +100,9 @@
    .cardDetails,
    .detailsContent {
       max-width: 100%;
+   }
+
+   .cardDetails {
+      margin-left: 10%;
    }
 }
