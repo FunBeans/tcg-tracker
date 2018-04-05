@@ -12,40 +12,79 @@ class CardDetailPage extends React.Component {
             cardId: '',
             cardInfo: {},
             cardCollection: [],
-            user: {},
-            inCollection: false
+            user: undefined,
+            inCollection: false,
+            card: [],
+            loggedIn: false
         }
 
         this.getCardInfo = this.getCardInfo.bind(this);
         this.addToDeck = this.addToDeck.bind(this);
         this.collectionCheck = this.collectionCheck.bind(this);
         this.removeFromDeck = this.removeFromDeck.bind(this);
+        this.loadCollection = this.loadCollection.bind(this);
     }
 
    componentDidMount() {
       // console.log(this.props.match.params.cardId);
       //have user's firebase information logged in state
       firebase.auth().onAuthStateChanged(user => {
-        this.setState({ user: user });
+        this.setState({ user: user }, () => this.loadCollection());
       });
-      const dbRefUser = firebase.database().ref(`users/${firebase.auth().currentUser.uid}`);
-      dbRefUser.on('value', (snapshot) => {
-         const cardArray = [];
-         const selectedCard = snapshot.val();
-         // snapshot value captures the value of what is added when the function is clicked and pushed to fbDB
-         for (let itemKey in selectedCard){
-            selectedCard[itemKey].key = itemKey;
-            cardArray.push(selectedCard[itemKey])
-         }
+      console.log(this.state.user);
+      
+      // const dbRefUser = firebase.database().ref(`users/${firebase.auth().currentUser.uid}`);
+      // dbRefUser.on('value', (snapshot) => {
+      //    const cardArray = [];
+      //    const selectedCard = snapshot.val();
+      //    // snapshot value captures the value of what is added when the function is clicked and pushed to fbDB
+      //    for (let itemKey in selectedCard){
+      //       selectedCard[itemKey].key = itemKey;
+      //       cardArray.push(selectedCard[itemKey])
+      //    }
+      //    this.setState({
+      //       cardCollection: cardArray,
+      //       cardId : this.props.match.params.cardId
+      //    },
+      //    () => {
+      //          // wait until state is set before making axios call
+      //          this.getCardInfo()
+      //    })
+      // })
+   }
+
+   loadCollection() {
+      console.log(this.state.user)
+      if (this.state.user === null) {
          this.setState({
-            cardCollection: cardArray,
-            cardId : this.props.match.params.cardId
-         },
-         () => {
-               // wait until state is set before making axios call
-               this.getCardInfo()
+            loggedIn: false
          })
-      })
+         this.render();
+      } else if (this.state.user !== undefined) {
+         this.setState({
+            loggedIn: true
+         })
+         console.log("loading");
+
+         const dbRefUser = firebase.database().ref(`users/${firebase.auth().currentUser.uid}`);
+         dbRefUser.on('value', (snapshot) => {
+            const cardArray = [];
+            const selectedCard = snapshot.val();
+            // snapshot value captures the value of what is added when the function is clicked and pushed to fbDB
+            for (let itemKey in selectedCard){
+               selectedCard[itemKey].key = itemKey;
+               cardArray.push(selectedCard[itemKey])
+            }
+            this.setState({
+               cardCollection: cardArray,
+               cardId : this.props.match.params.cardId
+            },
+            () => {
+                  // wait until state is set before making axios call
+                  this.getCardInfo()
+            })
+         })
+      } 
    }
 
    getCardInfo() {
@@ -101,6 +140,7 @@ class CardDetailPage extends React.Component {
       // } else {
       //    null
       // }
+      this.setState({ inCollection: false })
    }
 
 
@@ -139,7 +179,8 @@ class CardDetailPage extends React.Component {
                //  cardInfo: this.state.cardInfo
                // cardId: this.state.cardId
                cardDetails
-               })   
+               })
+               this.setState({ inCollection: true });   
          }
          else {
                console.log("matched");
@@ -148,7 +189,7 @@ class CardDetailPage extends React.Component {
    }
 
     render() {     
-        const { ability, attacks, hp, name, types, weaknesses, imageUrl, rarity, supertype, text, nationalPokedexNumber } = this.state.cardInfo;
+        const { ability, attacks, hp, name, types, weaknesses, imageUrl, rarity, supertype, text, nationalPokedexNumber } = this.props.location.state.card;
         return <React.Fragment>
             <NavBar logInUser={this.logInUser} googleSignIn={this.googleSignIn} signOutUser={this.signOutUser} />
             <div className="wrapper">
@@ -245,7 +286,7 @@ class CardDetailPage extends React.Component {
                         <span>{rarity}</span>
                      </div>
 
-                     <div className="detailsContainer">
+                     {/* <div className="detailsContainer">
                         {
                            this.state.inCollection
                            ?  <button className="addButton" onClick={this.removeFromDeck}>
@@ -255,9 +296,26 @@ class CardDetailPage extends React.Component {
                            :  <button className="addButton" onClick={this.addToDeck}>
                                  Add to Deck
                               </button>
-                        }
-                        
-                     </div>
+                        } 
+                     </div> */}
+                     {
+                        this.state.loggedIn
+                        ?
+                           <div className="detailsContainer">
+                              {
+                                 this.state.inCollection
+                                 ?  <button className="addButton" onClick={this.removeFromDeck}>
+                                       Remove
+                                    </button>
+                              
+                                 :  <button className="addButton" onClick={this.addToDeck}>
+                                       Add to Deck
+                                    </button>
+                              } 
+                           </div> 
+                        :
+                           null
+                     }
                   </section>
                </main>
             </div>

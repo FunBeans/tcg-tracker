@@ -209,7 +209,7 @@ class CardGridPage extends React.Component {
                                 this.state.loadedCards ? 
                                 cardSet.map(card => {
                                     return (
-                                        <Link key={card.id} to={`/franchises/pokemon/${card.id}`}  >
+                                        <Link key={card.id} to={{pathname:`/franchises/pokemon/${card.id}`, state: {card: card}}}  >
                                             <SingleCard data={card} key={card.id}/>
                                         </Link>
                                     )
