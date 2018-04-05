@@ -157,42 +157,42 @@ class CardGridPage extends React.Component {
                                 <h3>Type</h3>
                                 <div className="selectTypeContainer">
                                    <label htmlFor="lightning">
-                                       <img src="../../../images/Lightning.png" alt=""/>
+                                        <img src="../../../images/Lightning.png" alt="lightning type icon" title="Lightning Type Icon"/>
                                    </label>
                                    <input className="hide" onChange={(e) => this.filterCard(e)} type="radio" value="lightning" id="lightning" name="type"/>
        
                                    <label htmlFor="fighting">
-                                       <img src="../../../images/Fighting.png" alt="" />
+                                        <img src="../../../images/Fighting.png" alt="fighting type icon" title="Fighting Type Icon" />
                                    </label>
                                    <input className="hide" onChange={(e) => this.filterCard(e)} type="radio" value="fighting" id="fighting" name="type"/>
        
                                    <label htmlFor="grass">
-                                       <img src="../../../images/Grass.png" alt="" />
+                                        <img src="../../../images/Grass.png" alt="grass type icon" title="Grass Type Icon" />
                                    </label>
                                    <input className="hide" onChange={(e) => this.filterCard(e)} type="radio" value="grass" id="grass" name="type"/>
        
                                    <label htmlFor="fire">
-                                       <img src="../../../images/Fire.png" alt="" />
+                                        <img src="../../../images/Fire.png" alt="fire type icon" title="Fire Type Icon"/>
                                    </label>
                                    <input className="hide" onChange={(e) => this.filterCard(e)} type="radio" value="fire" id="fire" name="type"/>
        
                                    <label htmlFor="psychic">
-                                       <img src="../../../images/Psychic.png" alt="" />
+                                        <img src="../../../images/Psychic.png" alt="psychic type icon" title="Psychic Type Icon" />
                                    </label>
                                    <input className="hide" onChange={(e) => this.filterCard(e)} type="radio" value="psychic" id="psychic" name="type"/>
    
                                    <label htmlFor="metal">
-                                       <img src="../../../images/Metal.png" alt="" />
+                                        <img src="../../../images/Metal.png" alt="metal type icon" title="Metal Type Icon"/>
                                    </label>
                                    <input className="hide" onChange={(e) => this.filterCard(e)} type="radio" value="metal" id="metal" name="type" />
    
                                    <label htmlFor="fairy">
-                                       <img src="../../../images/Fairy.png" alt="" />
+                                        <img src="../../../images/Fairy.png" alt="fairy type icon" title="Fairy Type Icon"/>
                                    </label>
                                    <input className="hide" onChange={(e) => this.filterCard(e)} type="radio" value="fairy" id="fairy" name="type" />
    
                                    <label htmlFor="colorless">
-                                       <img src="../../../images/Colorless.png" alt="" />
+                                        <img src="../../../images/Colorless.png" alt="colorless type icon" title="Colorless Type Icon"/>
                                    </label>
                                    <input className="hide" onChange={(e) => this.filterCard(e)} id="colorless" type="radio" value="colorless" name="type" />
                                 </div>
