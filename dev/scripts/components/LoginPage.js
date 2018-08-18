@@ -1,6 +1,5 @@
 import React from "react";
-import FaIconPack from "react-icons/lib/fa";
-import FaGoogle from "react-icons/lib/fa/google";
+import { FaGoogle } from 'react-icons/fa';
 
 class LoginPage extends React.Component {
   constructor() {
